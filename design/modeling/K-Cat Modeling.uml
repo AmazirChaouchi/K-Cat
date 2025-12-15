@@ -3,4 +3,5 @@
   <packageImport xmi:type="uml:PackageImport" xmi:id="_3Nlt4NnPEfCoQ_BnquzG4Q">
     <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
   </packageImport>
+  <packagedElement xmi:type="uml:Package" xmi:id="_UZaSYNnREfCoQ_BnquzG4Q" name="LitterBox"/>
 </uml:Model>
