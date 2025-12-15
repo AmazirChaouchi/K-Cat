@@ -48,7 +48,7 @@ GPIO26 (37) (38) GPIO20
 | 23 | GPIO11 | - | 24 | GPIO8 | - |
 | 25 | GND | - | 26 | GPIO7 | - |
 | 27 | GPIO0 | - | 28 | GPIO1 | - |
-| 29 | GPIO5 | `WeightSensor::sck` | 30 | GND | - |
+| 29 | GPIO5 | `WeightSensor::dt` | 30 | GND | - |
 | 31 | GPIO6 | `WeightSensor::sck` | 32 | GPIO12 | - |
 | 33 | GPIO19 | - | 34 | GND | - |
 | 35 | GPIO19 | - | 36 | GPIO16 | - |
