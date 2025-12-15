@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:app="http://schemas.android.com/apk/res-auto"
-             android:id="@+id/nav_graph">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/dashboardFragment">
 
+    <fragment
+        android:id="@+id/dashboardFragment"
+        android:name="view.DashboardFragment"
+        android:label="DashboardFragment" />
+    <fragment
+        android:id="@+id/notificationsFragment"
+        android:name="view.NotificationsFragment"
+        android:label="NotificationsFragment" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="view.ProfileFragment"
+        android:label="ProfileFragment" />
 </navigation>
