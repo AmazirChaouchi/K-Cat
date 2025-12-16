@@ -3,5 +3,17 @@
   <packageImport xmi:type="uml:PackageImport" xmi:id="_3Nlt4NnPEfCoQ_BnquzG4Q">
     <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
   </packageImport>
-  <packagedElement xmi:type="uml:Package" xmi:id="_UZaSYNnREfCoQ_BnquzG4Q" name="LitterBox"/>
+  <packagedElement xmi:type="uml:Package" xmi:id="_UZaSYNnREfCoQ_BnquzG4Q" name="LitterBox">
+    <packagedElement xmi:type="uml:Actor" xmi:id="_cJTxUNpVEfCoQ_BnquzG4Q" name="Customer"/>
+    <packagedElement xmi:type="uml:Actor" xmi:id="_xJ0GMNnSEfCoQ_BnquzG4Q" name="Master"/>
+    <packagedElement xmi:type="uml:Actor" xmi:id="_8b8hwNnSEfCoQ_BnquzG4Q" name="Cat"/>
+    <packagedElement xmi:type="uml:Actor" xmi:id="_0XLqkNpVEfCoQ_BnquzG4Q" name="Veterinarian"/>
+    <packagedElement xmi:type="uml:Actor" xmi:id="_iLD4YNpVEfCoQ_BnquzG4Q" name="Database"/>
+    <packagedElement xmi:type="uml:Actor" xmi:id="_kD1-8NpVEfCoQ_BnquzG4Q" name="BackendServer"/>
+    <packagedElement xmi:type="uml:Actor" xmi:id="_rj1loNpVEfCoQ_BnquzG4Q" name="SmartphoneApplication"/>
+    <packagedElement xmi:type="uml:Component" xmi:id="_F_MuwNnVEfCoQ_BnquzG4Q" name="LitterBox" useCase="_TDo80NnSEfCoQ_BnquzG4Q _oStQsNnUEfCoQ_BnquzG4Q">
+      <ownedUseCase xmi:type="uml:UseCase" xmi:id="_TDo80NnSEfCoQ_BnquzG4Q" name="UseLitterBox" subject="_F_MuwNnVEfCoQ_BnquzG4Q"/>
+      <ownedUseCase xmi:type="uml:UseCase" xmi:id="_oStQsNnUEfCoQ_BnquzG4Q" name="WeighCat" subject="_F_MuwNnVEfCoQ_BnquzG4Q"/>
+    </packagedElement>
+  </packagedElement>
 </uml:Model>
