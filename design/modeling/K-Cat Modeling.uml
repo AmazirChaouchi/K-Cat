@@ -7,15 +7,11 @@
     <packagedElement xmi:type="uml:Actor" xmi:id="_cJTxUNpVEfCoQ_BnquzG4Q" name="Customer"/>
     <packagedElement xmi:type="uml:Actor" xmi:id="_8b8hwNnSEfCoQ_BnquzG4Q" name="Cat"/>
     <packagedElement xmi:type="uml:Actor" xmi:id="_kD1-8NpVEfCoQ_BnquzG4Q" name="BackendServer"/>
-    <packagedElement xmi:type="uml:Component" xmi:id="_F_MuwNnVEfCoQ_BnquzG4Q" name="LitterBox" useCase="_TDo80NnSEfCoQ_BnquzG4Q _oStQsNnUEfCoQ_BnquzG4Q _S4ctINpZEfCoQ_BnquzG4Q _X0vLgNpaEfCoQ_BnquzG4Q _VXFn4NpbEfCoQ_BnquzG4Q _bEyxkNpbEfCoQ_BnquzG4Q _lHF88NpbEfCoQ_BnquzG4Q _Io3zYNpcEfCoQ_BnquzG4Q">
+    <packagedElement xmi:type="uml:Component" xmi:id="_F_MuwNnVEfCoQ_BnquzG4Q" name="LitterBox" useCase="_TDo80NnSEfCoQ_BnquzG4Q _X0vLgNpaEfCoQ_BnquzG4Q _VXFn4NpbEfCoQ_BnquzG4Q _lHF88NpbEfCoQ_BnquzG4Q">
       <ownedUseCase xmi:type="uml:UseCase" xmi:id="_TDo80NnSEfCoQ_BnquzG4Q" name="UseLitterBox" subject="_F_MuwNnVEfCoQ_BnquzG4Q"/>
-      <ownedUseCase xmi:type="uml:UseCase" xmi:id="_oStQsNnUEfCoQ_BnquzG4Q" name="WeighCat" subject="_F_MuwNnVEfCoQ_BnquzG4Q"/>
-      <packagedElement xmi:type="uml:UseCase" xmi:id="_S4ctINpZEfCoQ_BnquzG4Q" name="MonitorUsage" subject="_F_MuwNnVEfCoQ_BnquzG4Q"/>
-      <packagedElement xmi:type="uml:UseCase" xmi:id="_X0vLgNpaEfCoQ_BnquzG4Q" name="ChangeLitter" subject="_F_MuwNnVEfCoQ_BnquzG4Q"/>
-      <packagedElement xmi:type="uml:UseCase" xmi:id="_VXFn4NpbEfCoQ_BnquzG4Q" name="TurnLitterOn" subject="_F_MuwNnVEfCoQ_BnquzG4Q"/>
-      <packagedElement xmi:type="uml:UseCase" xmi:id="_bEyxkNpbEfCoQ_BnquzG4Q" name="TurnLitterOff" subject="_F_MuwNnVEfCoQ_BnquzG4Q"/>
-      <packagedElement xmi:type="uml:UseCase" xmi:id="_lHF88NpbEfCoQ_BnquzG4Q" name="FindOutIfOccupied" subject="_F_MuwNnVEfCoQ_BnquzG4Q"/>
-      <packagedElement xmi:type="uml:UseCase" xmi:id="_Io3zYNpcEfCoQ_BnquzG4Q" name="MonitorFailure" subject="_F_MuwNnVEfCoQ_BnquzG4Q"/>
+      <packagedElement xmi:type="uml:UseCase" xmi:id="_X0vLgNpaEfCoQ_BnquzG4Q" name="PerformMaintenance" subject="_F_MuwNnVEfCoQ_BnquzG4Q"/>
+      <packagedElement xmi:type="uml:UseCase" xmi:id="_VXFn4NpbEfCoQ_BnquzG4Q" name="ManagePower" subject="_F_MuwNnVEfCoQ_BnquzG4Q"/>
+      <packagedElement xmi:type="uml:UseCase" xmi:id="_lHF88NpbEfCoQ_BnquzG4Q" name="CheckDeviceStatus" subject="_F_MuwNnVEfCoQ_BnquzG4Q"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="_eUlj0NpaEfCoQ_BnquzG4Q" memberEnd="_eUoAEdpaEfCoQ_BnquzG4Q _eUonINpaEfCoQ_BnquzG4Q">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_eUnZANpaEfCoQ_BnquzG4Q" source="org.eclipse.papyrus">
@@ -31,33 +27,12 @@
       <ownedEnd xmi:type="uml:Property" xmi:id="_kPbKktpaEfCoQ_BnquzG4Q" name="uselitterbox" type="_TDo80NnSEfCoQ_BnquzG4Q" association="_kPZVYNpaEfCoQ_BnquzG4Q"/>
       <ownedEnd xmi:type="uml:Property" xmi:id="_kPbxoNpaEfCoQ_BnquzG4Q" name="cat" type="_8b8hwNnSEfCoQ_BnquzG4Q" association="_kPZVYNpaEfCoQ_BnquzG4Q"/>
     </packagedElement>
-    <packagedElement xmi:type="uml:Association" xmi:id="_u2srQNpaEfCoQ_BnquzG4Q" memberEnd="_u2ugcdpaEfCoQ_BnquzG4Q _u2ugctpaEfCoQ_BnquzG4Q">
-      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_u2t5YNpaEfCoQ_BnquzG4Q" source="org.eclipse.papyrus">
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_u2ugcNpaEfCoQ_BnquzG4Q" key="nature" value="UML_Nature"/>
-      </eAnnotations>
-      <ownedEnd xmi:type="uml:Property" xmi:id="_u2ugcdpaEfCoQ_BnquzG4Q" name="backendserver" type="_kD1-8NpVEfCoQ_BnquzG4Q" association="_u2srQNpaEfCoQ_BnquzG4Q"/>
-      <ownedEnd xmi:type="uml:Property" xmi:id="_u2ugctpaEfCoQ_BnquzG4Q" name="monitorusage" type="_S4ctINpZEfCoQ_BnquzG4Q" association="_u2srQNpaEfCoQ_BnquzG4Q"/>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Association" xmi:id="_EG22MNpbEfCoQ_BnquzG4Q" memberEnd="_EG4rYdpbEfCoQ_BnquzG4Q _EG5ScNpbEfCoQ_BnquzG4Q">
-      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_EG4EUNpbEfCoQ_BnquzG4Q" source="org.eclipse.papyrus">
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_EG4rYNpbEfCoQ_BnquzG4Q" key="nature" value="UML_Nature"/>
-      </eAnnotations>
-      <ownedEnd xmi:type="uml:Property" xmi:id="_EG4rYdpbEfCoQ_BnquzG4Q" name="backendserver" type="_kD1-8NpVEfCoQ_BnquzG4Q" association="_EG22MNpbEfCoQ_BnquzG4Q"/>
-      <ownedEnd xmi:type="uml:Property" xmi:id="_EG5ScNpbEfCoQ_BnquzG4Q" name="weighcat" type="_oStQsNnUEfCoQ_BnquzG4Q" association="_EG22MNpbEfCoQ_BnquzG4Q"/>
-    </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="_aMQAANpbEfCoQ_BnquzG4Q" memberEnd="_aMR1MtpbEfCoQ_BnquzG4Q _aMR1M9pbEfCoQ_BnquzG4Q">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_aMR1MNpbEfCoQ_BnquzG4Q" source="org.eclipse.papyrus">
         <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_aMR1MdpbEfCoQ_BnquzG4Q" key="nature" value="UML_Nature"/>
       </eAnnotations>
       <ownedEnd xmi:type="uml:Property" xmi:id="_aMR1MtpbEfCoQ_BnquzG4Q" name="turnlitteron" type="_VXFn4NpbEfCoQ_BnquzG4Q" association="_aMQAANpbEfCoQ_BnquzG4Q"/>
       <ownedEnd xmi:type="uml:Property" xmi:id="_aMR1M9pbEfCoQ_BnquzG4Q" name="customer" type="_cJTxUNpVEfCoQ_BnquzG4Q" association="_aMQAANpbEfCoQ_BnquzG4Q"/>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Association" xmi:id="_dQFkcNpbEfCoQ_BnquzG4Q" memberEnd="_dQGyktpbEfCoQ_BnquzG4Q _dQHZoNpbEfCoQ_BnquzG4Q">
-      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_dQGykNpbEfCoQ_BnquzG4Q" source="org.eclipse.papyrus">
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_dQGykdpbEfCoQ_BnquzG4Q" key="nature" value="UML_Nature"/>
-      </eAnnotations>
-      <ownedEnd xmi:type="uml:Property" xmi:id="_dQGyktpbEfCoQ_BnquzG4Q" name="turnlitteroff" type="_bEyxkNpbEfCoQ_BnquzG4Q" association="_dQFkcNpbEfCoQ_BnquzG4Q"/>
-      <ownedEnd xmi:type="uml:Property" xmi:id="_dQHZoNpbEfCoQ_BnquzG4Q" name="customer" type="_cJTxUNpVEfCoQ_BnquzG4Q" association="_dQFkcNpbEfCoQ_BnquzG4Q"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="_qSN-ANpbEfCoQ_BnquzG4Q" memberEnd="_qSQaQNpbEfCoQ_BnquzG4Q _qSQaQdpbEfCoQ_BnquzG4Q">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_qSPzMNpbEfCoQ_BnquzG4Q" source="org.eclipse.papyrus">
@@ -66,19 +41,12 @@
       <ownedEnd xmi:type="uml:Property" xmi:id="_qSQaQNpbEfCoQ_BnquzG4Q" name="findoutifoccupied" type="_lHF88NpbEfCoQ_BnquzG4Q" association="_qSN-ANpbEfCoQ_BnquzG4Q"/>
       <ownedEnd xmi:type="uml:Property" xmi:id="_qSQaQdpbEfCoQ_BnquzG4Q" name="master" type="_cJTxUNpVEfCoQ_BnquzG4Q" association="_qSN-ANpbEfCoQ_BnquzG4Q"/>
     </packagedElement>
-    <packagedElement xmi:type="uml:Association" xmi:id="_QG_x0NpcEfCoQ_BnquzG4Q" memberEnd="_QHC1INpcEfCoQ_BnquzG4Q _QHC1IdpcEfCoQ_BnquzG4Q">
-      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_QHCOENpcEfCoQ_BnquzG4Q" source="org.eclipse.papyrus">
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_QHCOEdpcEfCoQ_BnquzG4Q" key="nature" value="UML_Nature"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_ONypANwTEfCoQ_BnquzG4Q" memberEnd="_ON4IkdwTEfCoQ_BnquzG4Q _ON4voNwTEfCoQ_BnquzG4Q">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_ON3hgNwTEfCoQ_BnquzG4Q" source="org.eclipse.papyrus">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_ON4IkNwTEfCoQ_BnquzG4Q" key="nature" value="UML_Nature"/>
       </eAnnotations>
-      <ownedEnd xmi:type="uml:Property" xmi:id="_QHC1INpcEfCoQ_BnquzG4Q" name="monitorfailure" type="_Io3zYNpcEfCoQ_BnquzG4Q" association="_QG_x0NpcEfCoQ_BnquzG4Q"/>
-      <ownedEnd xmi:type="uml:Property" xmi:id="_QHC1IdpcEfCoQ_BnquzG4Q" name="customer" type="_cJTxUNpVEfCoQ_BnquzG4Q" association="_QG_x0NpcEfCoQ_BnquzG4Q"/>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Association" xmi:id="_5-3LINpdEfCoQ_BnquzG4Q" memberEnd="_5-6OcdpdEfCoQ_BnquzG4Q _5-6OctpdEfCoQ_BnquzG4Q">
-      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_5-5nYNpdEfCoQ_BnquzG4Q" source="org.eclipse.papyrus">
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_5-6OcNpdEfCoQ_BnquzG4Q" key="nature" value="UML_Nature"/>
-      </eAnnotations>
-      <ownedEnd xmi:type="uml:Property" xmi:id="_5-6OcdpdEfCoQ_BnquzG4Q" name="backendserver" type="_kD1-8NpVEfCoQ_BnquzG4Q" association="_5-3LINpdEfCoQ_BnquzG4Q"/>
-      <ownedEnd xmi:type="uml:Property" xmi:id="_5-6OctpdEfCoQ_BnquzG4Q" name="monitorfailure" type="_Io3zYNpcEfCoQ_BnquzG4Q" association="_5-3LINpdEfCoQ_BnquzG4Q"/>
+      <ownedEnd xmi:type="uml:Property" xmi:id="_ON4IkdwTEfCoQ_BnquzG4Q" name="backendserver" type="_kD1-8NpVEfCoQ_BnquzG4Q" association="_ONypANwTEfCoQ_BnquzG4Q"/>
+      <ownedEnd xmi:type="uml:Property" xmi:id="_ON4voNwTEfCoQ_BnquzG4Q" name="uselitterbox" type="_TDo80NnSEfCoQ_BnquzG4Q" association="_ONypANwTEfCoQ_BnquzG4Q"/>
     </packagedElement>
   </packagedElement>
 </uml:Model>
