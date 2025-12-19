@@ -10,21 +10,14 @@
     <packagedElement xmi:type="uml:Component" xmi:id="_F_MuwNnVEfCoQ_BnquzG4Q" name="LitterBox" useCase="_TDo80NnSEfCoQ_BnquzG4Q _X0vLgNpaEfCoQ_BnquzG4Q _VXFn4NpbEfCoQ_BnquzG4Q _lHF88NpbEfCoQ_BnquzG4Q">
       <ownedUseCase xmi:type="uml:UseCase" xmi:id="_TDo80NnSEfCoQ_BnquzG4Q" name="UseLitterBox" classifierBehavior="_CD6lwNwWEfCoQ_BnquzG4Q" subject="_F_MuwNnVEfCoQ_BnquzG4Q">
         <ownedBehavior xmi:type="uml:Interaction" xmi:id="_CD6lwNwWEfCoQ_BnquzG4Q" name="UseLitterBox">
-          <lifeline xmi:type="uml:Lifeline" xmi:id="_sRdJkNwWEfCoQ_BnquzG4Q" name=":DoorSensor" coveredBy="__vmAcNwaEfCoQ_BnquzG4Q __vqR4NwaEfCoQ_BnquzG4Q _wMiQUNwcEfCoQ_BnquzG4Q _wNfSkNwcEfCoQ_BnquzG4Q _ve3nINweEfCoQ_BnquzG4Q _ve8foNweEfCoQ_BnquzG4Q _wNQCANwcEfCoQ_BnquzG4Q"/>
-          <lifeline xmi:type="uml:Lifeline" xmi:id="_3q6VINwWEfCoQ_BnquzG4Q" name=":LitterBoxManager" coveredBy="__vmAcNwaEfCoQ_BnquzG4Q __vqR4NwaEfCoQ_BnquzG4Q _wMfNANwcEfCoQ_BnquzG4Q _wNiV4NwcEfCoQ_BnquzG4Q _ve3nINweEfCoQ_BnquzG4Q _ve8foNweEfCoQ_BnquzG4Q"/>
+          <lifeline xmi:type="uml:Lifeline" xmi:id="_sRdJkNwWEfCoQ_BnquzG4Q" name=":DoorSensor" coveredBy="__vmAcNwaEfCoQ_BnquzG4Q __vqR4NwaEfCoQ_BnquzG4Q _wMiQUNwcEfCoQ_BnquzG4Q _ve3nINweEfCoQ_BnquzG4Q _ve8foNweEfCoQ_BnquzG4Q"/>
+          <lifeline xmi:type="uml:Lifeline" xmi:id="_3q6VINwWEfCoQ_BnquzG4Q" name=":LitterBoxManager" coveredBy="__vmAcNwaEfCoQ_BnquzG4Q __vqR4NwaEfCoQ_BnquzG4Q _wMfNANwcEfCoQ_BnquzG4Q _ve3nINweEfCoQ_BnquzG4Q _ve8foNweEfCoQ_BnquzG4Q"/>
           <lifeline xmi:type="uml:Lifeline" xmi:id="_MaV8INwYEfCoQ_BnquzG4Q" name=":WeightSensor" coveredBy="__vmAcNwaEfCoQ_BnquzG4Q __vqR4NwaEfCoQ_BnquzG4Q _ve3nINweEfCoQ_BnquzG4Q _ve8foNweEfCoQ_BnquzG4Q"/>
-          <fragment xmi:type="uml:CombinedFragment" xmi:id="__vmAcNwaEfCoQ_BnquzG4Q" name="loop" covered="_3q6VINwWEfCoQ_BnquzG4Q _MaV8INwYEfCoQ_BnquzG4Q _sRdJkNwWEfCoQ_BnquzG4Q" interactionOperator="loop">
-            <operand xmi:type="uml:InteractionOperand" xmi:id="__vqR4NwaEfCoQ_BnquzG4Q" name="loopOperand" covered="_3q6VINwWEfCoQ_BnquzG4Q _MaV8INwYEfCoQ_BnquzG4Q _sRdJkNwWEfCoQ_BnquzG4Q">
-              <guard xmi:type="uml:InteractionConstraint" xmi:id="__vqR4dwaEfCoQ_BnquzG4Q" name="loopGuard">
-                <specification xmi:type="uml:LiteralBoolean" xmi:id="_GL9KcNwcEfCoQ_BnquzG4Q" name="loopCondition" value="true"/>
-              </guard>
-            </operand>
+          <fragment xmi:type="uml:CombinedFragment" xmi:id="__vmAcNwaEfCoQ_BnquzG4Q" name="run" covered="_3q6VINwWEfCoQ_BnquzG4Q _MaV8INwYEfCoQ_BnquzG4Q _sRdJkNwWEfCoQ_BnquzG4Q" interactionOperator="loop">
+            <operand xmi:type="uml:InteractionOperand" xmi:id="__vqR4NwaEfCoQ_BnquzG4Q" name="loopOperand" covered="_3q6VINwWEfCoQ_BnquzG4Q _MaV8INwYEfCoQ_BnquzG4Q _sRdJkNwWEfCoQ_BnquzG4Q"/>
           </fragment>
           <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_wMfNANwcEfCoQ_BnquzG4Q" name="Message5SendEvent" covered="_3q6VINwWEfCoQ_BnquzG4Q" message="_wMbioNwcEfCoQ_BnquzG4Q"/>
           <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_wMiQUNwcEfCoQ_BnquzG4Q" name="Message5ReceiveEvent" covered="_sRdJkNwWEfCoQ_BnquzG4Q" message="_wMbioNwcEfCoQ_BnquzG4Q"/>
-          <fragment xmi:type="uml:BehaviorExecutionSpecification" xmi:id="_wNQCANwcEfCoQ_BnquzG4Q" name="BehaviorExecutionSpecification8" covered="_sRdJkNwWEfCoQ_BnquzG4Q" finish="_wNfSkNwcEfCoQ_BnquzG4Q" start="_wMiQUNwcEfCoQ_BnquzG4Q"/>
-          <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_wNfSkNwcEfCoQ_BnquzG4Q" name="Message10SendEvent" covered="_sRdJkNwWEfCoQ_BnquzG4Q" message="_wNboMNwcEfCoQ_BnquzG4Q"/>
-          <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_wNiV4NwcEfCoQ_BnquzG4Q" name="Message10ReceiveEvent" covered="_3q6VINwWEfCoQ_BnquzG4Q" message="_wNboMNwcEfCoQ_BnquzG4Q"/>
           <fragment xmi:type="uml:CombinedFragment" xmi:id="_ve3nINweEfCoQ_BnquzG4Q" name="CombinedFragment7" covered="_3q6VINwWEfCoQ_BnquzG4Q _MaV8INwYEfCoQ_BnquzG4Q _sRdJkNwWEfCoQ_BnquzG4Q" interactionOperator="opt">
             <operand xmi:type="uml:InteractionOperand" xmi:id="_ve8foNweEfCoQ_BnquzG4Q" name="InteractionOperand0" covered="_3q6VINwWEfCoQ_BnquzG4Q _MaV8INwYEfCoQ_BnquzG4Q _sRdJkNwWEfCoQ_BnquzG4Q">
               <guard xmi:type="uml:InteractionConstraint" xmi:id="_lLYIoNwfEfCoQ_BnquzG4Q" name="InteractionConstraint1">
@@ -32,8 +25,7 @@
               </guard>
             </operand>
           </fragment>
-          <message xmi:type="uml:Message" xmi:id="_wMbioNwcEfCoQ_BnquzG4Q" name="request_status()" receiveEvent="_wMiQUNwcEfCoQ_BnquzG4Q" sendEvent="_wMfNANwcEfCoQ_BnquzG4Q"/>
-          <message xmi:type="uml:Message" xmi:id="_wNboMNwcEfCoQ_BnquzG4Q" name="status = request_status: status" messageSort="reply" receiveEvent="_wNiV4NwcEfCoQ_BnquzG4Q" sendEvent="_wNfSkNwcEfCoQ_BnquzG4Q"/>
+          <message xmi:type="uml:Message" xmi:id="_wMbioNwcEfCoQ_BnquzG4Q" name="" messageSort="asynchCall" receiveEvent="_wMiQUNwcEfCoQ_BnquzG4Q" sendEvent="_wMfNANwcEfCoQ_BnquzG4Q" signature="_7a63QNy_EfC0BcMvEkpWuA"/>
         </ownedBehavior>
       </ownedUseCase>
       <packagedElement xmi:type="uml:UseCase" xmi:id="_X0vLgNpaEfCoQ_BnquzG4Q" name="PerformMaintenance" subject="_F_MuwNnVEfCoQ_BnquzG4Q"/>
@@ -75,7 +67,44 @@
       <ownedEnd xmi:type="uml:Property" xmi:id="_ON4IkdwTEfCoQ_BnquzG4Q" name="backendserver" type="_kD1-8NpVEfCoQ_BnquzG4Q" association="_ONypANwTEfCoQ_BnquzG4Q"/>
       <ownedEnd xmi:type="uml:Property" xmi:id="_ON4voNwTEfCoQ_BnquzG4Q" name="uselitterbox" type="_TDo80NnSEfCoQ_BnquzG4Q" association="_ONypANwTEfCoQ_BnquzG4Q"/>
     </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_gxZ1QNyvEfCEn8ELItKYPw" name="LitterBoxManager"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_gxZ1QNyvEfCEn8ELItKYPw" name="LitterBoxManager" visibility="public">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_aTL6ANzCEfC0BcMvEkpWuA" name="isRunning">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+        <defaultValue xmi:type="uml:LiteralBoolean" xmi:id="_ggS8gNzCEfC0BcMvEkpWuA" name="default_isRunning"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_rhQacNzAEfC0BcMvEkpWuA" name="doorsensor" type="_iwZUsNyzEfCEn8ELItKYPw" aggregation="composite" association="_rhLh8NzAEfC0BcMvEkpWuA">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_9WmEUNzAEfC0BcMvEkpWuA" name="LiteralInteger1" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_9WpHoNzAEfC0BcMvEkpWuA" name="LiteralUnlimitedNatural1" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_UM700Ny_EfC0BcMvEkpWuA" name="isDoorOpen" visibility="private">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+      </ownedAttribute>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_nC_U0Ny_EfC0BcMvEkpWuA" name="getDoorStatus" visibility="private" isQuery="true">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_ypp18Ny_EfC0BcMvEkpWuA" name="" type="_3_prQNy0EfCEn8ELItKYPw" direction="return" effect="read"/>
+      </ownedOperation>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_7a63QNy_EfC0BcMvEkpWuA" name="updateDoorStatus">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_Rl3PcNzAEfC0BcMvEkpWuA" name="isDoorOpen" direction="out" effect="update">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+        </ownedParameter>
+      </ownedOperation>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_7T7MgNzBEfC0BcMvEkpWuA" name="run">
+        <ownedRule xmi:type="uml:InteractionConstraint" xmi:id="__vqR4dwaEfCoQ_BnquzG4Q" name="run_condition" constrainedElement="_aTL6ANzCEfC0BcMvEkpWuA">
+          <specification xmi:type="uml:LiteralBoolean" xmi:id="_GL9KcNwcEfCoQ_BnquzG4Q" name="loopCondition" value="true"/>
+        </ownedRule>
+        <ownedRule xmi:type="uml:InteractionConstraint" xmi:id="_Xv954NzDEfC0BcMvEkpWuA" name="run_condition">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_XwAWINzDEfC0BcMvEkpWuA" name="constraintSpec">
+            <language>OCL</language>
+            <body>true</body>
+          </specification>
+        </ownedRule>
+        <ownedRule xmi:type="uml:InteractionConstraint" xmi:id="_Is01YNzEEfC0BcMvEkpWuA" name="run_condition">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_Is3RoNzEEfC0BcMvEkpWuA" name="constraintSpec">
+            <language>OCL</language>
+            <body>true</body>
+          </specification>
+        </ownedRule>
+      </ownedOperation>
+    </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_iwZUsNyzEfCEn8ELItKYPw" name="DoorSensor" visibility="private">
       <ownedAttribute xmi:type="uml:Property" xmi:id="_hTcZENy0EfCEn8ELItKYPw" name="status" visibility="private" type="_3_prQNy0EfCEn8ELItKYPw"/>
       <ownedOperation xmi:type="uml:Operation" xmi:id="_VgvqQNy4EfC0BcMvEkpWuA" name="getStatus" visibility="package" isQuery="true">
@@ -91,5 +120,11 @@
       </nestedClassifier>
     </packagedElement>
     <packagedElement xmi:type="uml:Usage" xmi:id="_Fbsc0Ny5EfC0BcMvEkpWuA" client="_iwZUsNyzEfCEn8ELItKYPw" supplier="_3_prQNy0EfCEn8ELItKYPw"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_rhLh8NzAEfC0BcMvEkpWuA" visibility="public" memberEnd="_rhQacNzAEfC0BcMvEkpWuA _rhSPotzAEfC0BcMvEkpWuA">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_rhOlQNzAEfC0BcMvEkpWuA" source="org.eclipse.papyrus">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_rhPMUNzAEfC0BcMvEkpWuA" key="nature" value="UML_Nature"/>
+      </eAnnotations>
+      <ownedEnd xmi:type="uml:Property" xmi:id="_rhSPotzAEfC0BcMvEkpWuA" name="litterboxmanager" type="_gxZ1QNyvEfCEn8ELItKYPw" association="_rhLh8NzAEfC0BcMvEkpWuA"/>
+    </packagedElement>
   </packagedElement>
 </uml:Model>
