@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="16dp"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="60dp">
+
+    <!-- Nom utilisateur -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nom de l'utilisateur"
+        android:textSize="14sp"
+        android:layout_marginBottom="6dp"/>
+
+    <EditText
+        android:id="@+id/editUserName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_input_outline"
+        android:hint="Ex : Alice"
+        android:inputType="textPersonName"
+        android:layout_marginBottom="20dp"/>
+
+    <!-- Nom du chat -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nom du chat"
+        android:textSize="14sp"
+        android:layout_marginBottom="6dp"/>
+
+    <EditText
+        android:id="@+id/editCatName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_input_outline"
+        android:hint="Ex : Moka"
+        android:inputType="textPersonName"/>
+
+</LinearLayout>
