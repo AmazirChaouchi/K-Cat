@@ -20,7 +20,6 @@
             android:id="@+id/tvGreeting"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Bonjour !"
             android:textSize="24sp"
             android:textStyle="bold" />
 
@@ -29,7 +28,6 @@
             android:id="@+id/tvSubtitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Voici les dernières infos sur votre chat"
             android:textSize="14sp"
             android:layout_marginTop="4dp"
             android:textColor="?android:textColorSecondary" />
@@ -38,6 +36,16 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="16dp" />
+
+        <TextView
+            android:id="@+id/tvPassageSectionTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Gestion de la litière"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="8dp" />
 
         <!-- LIGNE DES CARTES -->
         <LinearLayout
@@ -314,10 +322,10 @@
             android:id="@+id/tvWeightSectionTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Poids du chat"
+            android:text="Suivi du poids"
             android:textStyle="bold"
             android:textSize="16sp"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="30dp"
             android:layout_marginBottom="8dp" />
 
 
