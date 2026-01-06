@@ -189,10 +189,11 @@
                     android:layout_marginBottom="8dp" />
 
                 <!-- GRAPHE -->
-                <com.github.mikephil.charting.charts.LineChart
-                    android:id="@+id/lineChart"
+                <com.github.mikephil.charting.charts.BarChart
+                    android:id="@+id/litterChart"
                     android:layout_width="match_parent"
-                    android:layout_height="200dp" />
+                    android:layout_height="220dp"
+                    android:layout_marginTop="16dp"/>
 
             </LinearLayout>
 
@@ -441,11 +442,17 @@
 
                 <!-- LINE CHART -->
                 <com.github.mikephil.charting.charts.LineChart
-                    android:id="@+id/lineChartWeightHistory"
+                    android:id="@+id/weightChart"
                     android:layout_width="match_parent"
-                    android:layout_height="150dp"/>
+                    android:layout_height="220dp"
+                    android:layout_marginTop="12dp" />
+
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="100dp" />
 
     </LinearLayout>
 
