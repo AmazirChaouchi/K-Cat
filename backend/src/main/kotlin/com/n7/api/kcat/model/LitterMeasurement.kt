@@ -15,7 +15,7 @@ data class LitterMeasurement(
     val id: Int? = null,
 
     val litiereId: String? = null,
-    val poids: Int? = null,
+    val poids: Double? = null,
     val timestamp: LocalDateTime? = null
 
 )
