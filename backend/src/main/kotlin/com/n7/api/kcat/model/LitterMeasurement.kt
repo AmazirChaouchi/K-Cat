@@ -14,6 +14,7 @@ data class LitterMeasurement(
     @GeneratedValue(strategy = GenerationType.AUTO)
     val id: Int? = null,
 
+    val litiereId: String? = null,
     val poids: Int? = null,
     val timestamp: LocalDateTime? = null
 

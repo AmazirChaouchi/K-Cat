@@ -4,6 +4,7 @@ import com.n7.api.kcat.model.LitterMeasurement
 import com.n7.api.kcat.repository.LitterMeasurementRepository
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 /*
 Controller permettant de manipuler les donnees "LitterMeasurement"
@@ -16,6 +17,6 @@ class LitterMeasurementController(private val litterMeasurementRepository: Litte
     Obtenir toutes les donnees "LitterMeasurements"
      */
     @GetMapping("")
-    fun getAllMeasurements(): List<LitterMeasurement> =
-        litterMeasurementRepository.findAll().toList()
+    fun getMeasurementsById(@RequestParam(name = "litiereId") litiereId: String): List<LitterMeasurement> =
+            litterMeasurementRepository.findByLitiereId(litiereId)
 }
