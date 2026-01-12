@@ -11,7 +11,7 @@ Modele "LitterMeasurement" representant les donnees mesurees depuis les capteurs
 data class LitterMeasurement(
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     val id: Int? = null,
 
     val litiereId: String? = null,
