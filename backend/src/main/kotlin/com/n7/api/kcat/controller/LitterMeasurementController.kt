@@ -23,12 +23,15 @@ class LitterMeasurementController(private val litterMeasurementRepository: Litte
                                         private val litterCleanupRepository: LitterCleanupRepository) {
 
     /*
-    Obtenir toutes les donnees "LitterMeasurements"
+    Obtenir toutes les donnees "LitterMeasurements" relatives a une litiere
      */
     @GetMapping("")
     fun getMeasurementsById(@RequestParam(name = "litiereId") litiereId: String): List<LitterMeasurement> =
             litterMeasurementRepository.findByLitiereId(litiereId)
 
+    /*
+    Créer une nouvelle donnee "LitterMeasurements"
+     */
     @PostMapping("")
     fun newMeasurement(@RequestBody litterMeasurement: LitterMeasurement) : ResponseEntity<Boolean> {
         if(litterMeasurement.litiereId == null) {
