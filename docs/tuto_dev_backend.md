@@ -10,7 +10,7 @@ Setup les variables d'environnement :
 1. Dans le menu du haut : Run > Edit Configurations
 2. Environnement variables :
 ```
-DB_URL=jdbc:postgresql://dpg-d502uueuk2gs739ofb0g-a.virginia-postgres.render.com/bd_kcat;PG_USER=bd_kcat_user;PG_PASSWORD=...
+DB_URL=jdbc:postgresql://dpg-d5jpt88gjchc739kmql0-a.virginia-postgres.render.com/bd_kcat_vkqi;PG_USER=bd_kcat_user;PG_PASSWORD=...
 ```
 
 (Attention l'adresse IP doit être ajoutée dans Render pour que les requêtes soit autorisées)
@@ -28,7 +28,7 @@ Langage : postgresql
 
 En ligne de commande, utiliser "psql" :
 ```
-psql -h dpg-d502uueuk2gs739ofb0g-a.virginia-postgres.render.com -U bd_kcat_user bd_kcat
+psql -h dpg-d5jpt88gjchc739kmql0-a.virginia-postgres.render.com -U bd_kcat_user bd_kcat_vkqi
 ```
 
 Indiquer ensuite le mdp.
