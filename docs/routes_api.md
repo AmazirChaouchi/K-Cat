@@ -69,3 +69,20 @@ Exemple de résultat :
     "shouldBeCleanedUp": false
 }
 ```
+
+## PUT Litter Cleanup
+
+PUT https://k-cat.onrender.com/api/litter-cleanup
+
+Permet de créer ou de modifier l'état de nettoyage d'une litière.
+Exemple de body :
+```
+{
+    "litiereId": "12345",
+    "lastCleanUpDate": "2026-01-14T14:50:20.898529",
+    "shouldBeCleanedUp": false
+}
+```
+
+Status code :
+200 = ok
