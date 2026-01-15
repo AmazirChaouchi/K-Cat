@@ -2,7 +2,7 @@
 
 # TEMP: LED
 from gpiozero import LED
-from time import localtime
+from time import time, localtime
 
 from DoorSensor import DoorSensor
 from WeightSensor import WeightSensor
@@ -51,19 +51,19 @@ class LitterBoxManager:
                 # TODO: timeCloseStart = timeCloseStop = None
                 measuredWeight[0] = weightSensor.getWeight()
                 # TODO: Start 2" openTimer
-                measuredOpenTime[0] = timer.time()
+                measuredOpenTime[0] = time.time()
                 # TODO: Take care of the duration
                 previousDoorState = currentDoorState
             elif (currentDoorState == "closed" and previousDoorState == "open"):
                 # TODO: Save timeOpenStop i.e. t1
-                measuredOpenTime[1] = timer.time()
+                measuredOpenTime[1] = time.time()
                 # If timeOpenStop - timeOpenStart < 2" then reset timers
                 if (measuredOpenTime[1] - measuredOpenTime[0] < 2.0):
                     measuredOpenTime = [None, None]
-                    measuredCloseTime[0] = timer.time()
+                    measuredCloseTime[0] = time.time()
                     measuredWeight[1] = weightSensor.getWeight()
             elif (currentDoorState == "closed" and previousDoorState == "closed"):
-                measuredCloseTime[1] = timer.time()
+                measuredCloseTime[1] = time.time()
                 # TODO: If measuredCloseTime < 2", do nothing
                 # TODO: Else, send information reagarding weight to the server
                 measuredWeight[1] = weightSensor.getWeight()
