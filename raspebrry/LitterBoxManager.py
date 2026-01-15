@@ -27,7 +27,7 @@ class LitterBoxManager:
     def setup(self):
         # TODO: Pairing
         # TODO: Calibration
-        weightSensor.setScale()
+        self.weightSensor.setScale()
         print("setup()")
 
 

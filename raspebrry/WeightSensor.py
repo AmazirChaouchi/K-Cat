@@ -11,6 +11,11 @@ class WeightSensor:
         self.hx.tare()
 
 
+    def setScale():
+        self.hx.reset()
+        self.hx.tare()
+
+
     def getWeight():
         return self.hx.get_weight(5)
 
