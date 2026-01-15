@@ -53,6 +53,7 @@ class LitterBoxManager:
                 # TODO: Start 2" openTimer
                 measuredOpenTime[0] = time()
                 # TODO: Take care of the duration
+                measuredCloseTime[0] = time()
                 previousDoorState = currentDoorState
             elif (currentDoorState == "closed" and previousDoorState == "open"):
                 # TODO: Save timeOpenStop i.e. t1
