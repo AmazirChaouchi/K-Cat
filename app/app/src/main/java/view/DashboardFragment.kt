@@ -72,51 +72,68 @@ class DashboardFragment : Fragment() {
             tvPoids.text = "$poids kg";
         }
 
-
-
         // Graphes
-        createLitterChart(view )
-
         viewModel.data.observe(viewLifecycleOwner) { list ->
             if (!list.isNullOrEmpty()) {
                 createWeightChart(view, list)
+                createLitterChart(view, list)
             }
         }
 
         return view
     }
 
-    fun createLitterChart(view : View) {
+    fun createLitterChart(view: View, measures: List<LitterMeasurement>) {
         val chart = view.findViewById<BarChart>(R.id.litterChart)
 
-        // Données fake
         val entries = mutableListOf<BarEntry>()
-        for (hour in 0..23) {
-            val fakePassages = (0..3).random() // à remplacer plus tard
-            entries.add(BarEntry(hour.toFloat(), fakePassages.toFloat()))
-        }
 
-        val dataSet = BarDataSet(entries, "Passages à la litière aujourd'hui")
-        dataSet.color = requireContext().getColor(android.R.color.holo_blue_light)
+        val formatter = DateTimeFormatter.ISO_LOCAL_DATE_TIME
+        val today = LocalDate.now()
 
-        val data = BarData(dataSet)
-        data.barWidth = 0.9f
+        // Compteur passages par heure
+        val passagesByHour = IntArray(24)
 
-        chart.data = data
-
-        chart.axisLeft.valueFormatter = object : ValueFormatter() {
-            override fun getFormattedValue(value: Float): String {
-                return value.toInt().toString()
+        measures.forEach { m ->
+            try {
+                val dateTime = LocalDateTime.parse(m.timestamp, formatter)
+                if (dateTime.toLocalDate() == today) {
+                    val hour = dateTime.hour
+                    passagesByHour[hour]++
+                }
+            } catch (e: Exception) {
             }
         }
 
+        for (hour in 0..23) {
+            entries.add(BarEntry(hour.toFloat(), passagesByHour[hour].toFloat()))
+        }
+
+        val dataSet = BarDataSet(entries, "Passages à la litière aujourd'hui").apply {
+            color = requireContext().getColor(android.R.color.holo_blue_light)
+            setDrawValues(false)
+        }
+
+        val data = BarData(dataSet)
+        data.barWidth = 0.9f
+        chart.data = data
+
+        // Axe Y
+        chart.axisLeft.apply {
+            axisMinimum = 0f
+            granularity = 1f
+            valueFormatter = object : ValueFormatter() {
+                override fun getFormattedValue(value: Float): String {
+                    return value.toInt().toString()
+                }
+            }
+        }
         chart.axisRight.isEnabled = false
 
-        // Configuration axe X
-
+        // Axe X, avec label toutes les 3 heures
         chart.xAxis.apply {
             position = XAxis.XAxisPosition.BOTTOM
-            granularity = 3f
+            granularity = 1f
             setDrawGridLines(false)
             labelCount = 8
             valueFormatter = object : ValueFormatter() {
@@ -126,13 +143,6 @@ class DashboardFragment : Fragment() {
                 }
             }
         }
-
-        // Axe Y
-        chart.axisLeft.axisMinimum = 0f
-        chart.axisRight.isEnabled = false
-
-        chart.description.isEnabled = false
-        chart.legend.isEnabled = false
 
         chart.description.isEnabled = false
         chart.legend.isEnabled = false
@@ -144,67 +154,7 @@ class DashboardFragment : Fragment() {
         chart.invalidate()
     }
 
-     /**fun createWeightChart(view : View) {
-        val chart = view.findViewById<LineChart>(R.id.weightChart)
-
-        // Données fake
-        val entries = mutableListOf<Entry>()
-        var weight = 4.2f
-
-        for (week in 0..11) {
-            weight += listOf(-0.05f, 0f, 0.03f).random()
-            entries.add(Entry(week.toFloat(), weight))
-        }
-
-         val dataSet = LineDataSet(entries, "Poids du chat").apply {
-             color = requireContext().getColor(android.R.color.holo_blue_dark)
-             setCircleColor(requireContext().getColor(android.R.color.holo_blue_dark))
-             lineWidth = 2f
-             circleRadius = 4f
-             setDrawCircleHole(false)
-
-             setDrawValues(false)
-             mode = LineDataSet.Mode.CUBIC_BEZIER
-         }
-
-         chart.data = LineData(dataSet)
-
-         chart.axisLeft.apply {
-             axisMinimum = 3.5f
-             granularity = 0.1f
-             valueFormatter = object : ValueFormatter() {
-                 override fun getFormattedValue(value: Float): String {
-                     return String.format("%.1f kg", value)
-                 }
-             }
-         }
-
-         chart.axisRight.isEnabled = false
-
-         chart.xAxis.apply {
-             position = XAxis.XAxisPosition.BOTTOM
-             granularity = 1f
-             setDrawGridLines(false)
-             labelCount = 6
-             valueFormatter = object : ValueFormatter() {
-                 override fun getFormattedValue(value: Float): String {
-                     val week = value.toInt()
-                     return if (week % 2 == 0) "S$week" else ""
-                 }
-             }
-         }
-
-         chart.description.isEnabled = false
-         chart.legend.isEnabled = false
-
-         chart.setScaleEnabled(false)
-         chart.isDoubleTapToZoomEnabled = false
-         chart.setPinchZoom(false)
-
-         chart.invalidate()
-     }**/
-
-     fun createWeightChart(view: View, measures: List<LitterMeasurement>) {
+    fun createWeightChart(view: View, measures: List<LitterMeasurement>) {
          val chart = view.findViewById<LineChart>(R.id.weightChart)
          val totalDays = 21
          val entries = mutableListOf<Entry>()
