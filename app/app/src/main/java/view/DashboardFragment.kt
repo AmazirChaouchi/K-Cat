@@ -22,10 +22,13 @@ import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.formatter.ValueFormatter
 import kotlin.getValue
 import api.LitterMeasurement
+import java.text.SimpleDateFormat
 import java.time.LocalDate
-import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.time.temporal.ChronoUnit
+import java.util.Locale
+import java.time.LocalDateTime
+import java.util.Date
 
 class DashboardFragment : Fragment() {
 
@@ -42,6 +45,7 @@ class DashboardFragment : Fragment() {
 
         val tvGreeting = view.findViewById<TextView>(R.id.tvGreeting)
         val tvSubtitle = view.findViewById<TextView>(R.id.tvSubtitle)
+        val tvLastPassage = view.findViewById<TextView>(R.id.tvLastPassage)
 
         val prefs = requireContext().getSharedPreferences(
             PREFS_NAME,
@@ -72,11 +76,12 @@ class DashboardFragment : Fragment() {
             tvPoids.text = "$poids kg";
         }
 
-        // Graphes
+        // Stats
         viewModel.data.observe(viewLifecycleOwner) { list ->
             if (!list.isNullOrEmpty()) {
                 createWeightChart(view, list)
                 createLitterChart(view, list)
+                tvLastPassage.text = getLastPassageFormatted(list)
             }
         }
 
@@ -155,95 +160,127 @@ class DashboardFragment : Fragment() {
     }
 
     fun createWeightChart(view: View, measures: List<LitterMeasurement>) {
-         val chart = view.findViewById<LineChart>(R.id.weightChart)
-         val totalDays = 21
-         val entries = mutableListOf<Entry>()
+        val chart = view.findViewById<LineChart>(R.id.weightChart)
+        val totalDays = 21
+        val entries = mutableListOf<Entry>()
 
-         // parse timestamps p
-         val formatter = DateTimeFormatter.ISO_LOCAL_DATE_TIME
-         val parsedMeasures = measures.mapNotNull { m ->
-             try {
-                 m to LocalDateTime.parse(m.timestamp, formatter)
-             } catch (e: Exception) {
-                 null
-             }
-         }
+        // parse timestamps p
+        val formatter = DateTimeFormatter.ISO_LOCAL_DATE_TIME
+        val parsedMeasures = measures.mapNotNull { m ->
+            try {
+                m to LocalDateTime.parse(m.timestamp, formatter)
+            } catch (e: Exception) {
+                null
+            }
+        }
 
-         if (parsedMeasures.isEmpty()) return
+        if (parsedMeasures.isEmpty()) return
 
-         val today = LocalDate.now()
+        val today = LocalDate.now()
 
-         // organise poids par jour
-         val weightsByDay = mutableMapOf<Int, Float>()
-         parsedMeasures.forEach { (measure, dateTime) ->
-             val date = dateTime.toLocalDate()
-             val daysDiff = ChronoUnit.DAYS.between(date, today).toInt()
-             if (daysDiff in 0 until totalDays) {
-                 val x = totalDays - 1 - daysDiff
-                 weightsByDay[x] = measure.poids.toFloat()
-             }
-         }
+        // organise poids par jour
+        val weightsByDay = mutableMapOf<Int, Float>()
+        parsedMeasures.forEach { (measure, dateTime) ->
+            val date = dateTime.toLocalDate()
+            val daysDiff = ChronoUnit.DAYS.between(date, today).toInt()
+            if (daysDiff in 0 until totalDays) {
+                val x = totalDays - 1 - daysDiff
+                weightsByDay[x] = measure.poids.toFloat()
+            }
+        }
 
-         // Crée les points pour le graphe
-         for (day in 0 until totalDays) {
-             val weight = weightsByDay[day] ?: Float.NaN
-             entries.add(Entry(day.toFloat(), weight))
-         }
+        // Crée les points pour le graphe
+        for (day in 0 until totalDays) {
+            val weight = weightsByDay[day] ?: Float.NaN
+            entries.add(Entry(day.toFloat(), weight))
+        }
 
-         // Dataset
-         val dataSet = LineDataSet(entries, "Poids du chat").apply {
-             color = requireContext().getColor(android.R.color.holo_blue_dark)
-             setCircleColor(requireContext().getColor(android.R.color.holo_blue_dark))
-             lineWidth = 2f
-             circleRadius = 4f
-             setDrawCircleHole(false)
-             setDrawValues(false)
-             mode = LineDataSet.Mode.CUBIC_BEZIER
-         }
+        // Dataset
+        val dataSet = LineDataSet(entries, "Poids du chat").apply {
+            color = requireContext().getColor(android.R.color.holo_blue_dark)
+            setCircleColor(requireContext().getColor(android.R.color.holo_blue_dark))
+            lineWidth = 2f
+            circleRadius = 4f
+            setDrawCircleHole(false)
+            setDrawValues(false)
+            mode = LineDataSet.Mode.CUBIC_BEZIER
+        }
 
-         chart.data = LineData(dataSet)
+        chart.data = LineData(dataSet)
 
-         // Axe Y -> poids
-         chart.axisLeft.apply {
-             axisMinimum = 0f
-             axisMaximum = (measures.maxOfOrNull { it.poids }?.toFloat()?.plus(0.5f)) ?: 5f
-             granularity = 0.1f
-             valueFormatter = object : ValueFormatter() {
-                 override fun getFormattedValue(value: Float): String {
-                     return String.format("%.1f kg", value)
-                 }
-             }
-         }
-         chart.axisRight.isEnabled = false
+        // Axe Y -> poids
+        chart.axisLeft.apply {
+            axisMinimum = 0f
+            axisMaximum = (measures.maxOfOrNull { it.poids }?.toFloat()?.plus(0.5f)) ?: 5f
+            granularity = 0.1f
+            valueFormatter = object : ValueFormatter() {
+                override fun getFormattedValue(value: Float): String {
+                    return String.format("%.1f kg", value)
+                }
+            }
+        }
+        chart.axisRight.isEnabled = false
 
-         // Axe X -> date
-         chart.xAxis.apply {
-             position = XAxis.XAxisPosition.BOTTOM
-             granularity = 1f
-             setDrawGridLines(false)
-             labelCount = totalDays
-             isGranularityEnabled = true
-             setAvoidFirstLastClipping(true)
-             valueFormatter = object : ValueFormatter() {
-                 override fun getFormattedValue(value: Float): String {
-                     val dayIndex = value.toInt()
-                     val daysAgo = totalDays - 1 - dayIndex
-                     val date = today.minusDays(daysAgo.toLong())
-                     // Label tous les 3 jours
-                     return if (daysAgo % 3 == 0 || daysAgo == 0) date.dayOfMonth.toString() else ""
-                 }
-             }
-         }
+        // Axe X -> date
+        chart.xAxis.apply {
+            position = XAxis.XAxisPosition.BOTTOM
+            granularity = 1f
+            setDrawGridLines(false)
+            labelCount = totalDays
+            isGranularityEnabled = true
+            setAvoidFirstLastClipping(true)
+            valueFormatter = object : ValueFormatter() {
+                override fun getFormattedValue(value: Float): String {
+                    val dayIndex = value.toInt()
+                    val daysAgo = totalDays - 1 - dayIndex
+                    val date = today.minusDays(daysAgo.toLong())
+                    // Label tous les 3 jours
+                    return if (daysAgo % 3 == 0 || daysAgo == 0) date.dayOfMonth.toString() else ""
+                }
+            }
+        }
 
-         chart.description.isEnabled = false
-         chart.legend.isEnabled = false
-         chart.setScaleEnabled(false)
-         chart.isDoubleTapToZoomEnabled = false
-         chart.setPinchZoom(false)
+        chart.description.isEnabled = false
+        chart.legend.isEnabled = false
+        chart.setScaleEnabled(false)
+        chart.isDoubleTapToZoomEnabled = false
+        chart.setPinchZoom(false)
 
-         chart.invalidate()
-     }
+        chart.invalidate()
+    }
 
+    fun getLastPassageFormatted(measures: List<LitterMeasurement>): String {
+        if (measures.isEmpty()) {
+            return "--/--/---- --:--"
+        }
+
+        val inputFormat = SimpleDateFormat(
+            "yyyy-MM-dd'T'HH:mm:ss",
+            Locale.US
+        )
+        val outputFormat = SimpleDateFormat(
+            "dd/MM/yyyy HH:mm",
+            Locale.FRANCE
+        )
+
+        var lastDate: Date? = null
+
+        for (m in measures) {
+            try {
+                val parsed = inputFormat.parse(m.timestamp) ?: continue
+                if (lastDate == null || parsed.after(lastDate)) {
+                    lastDate = parsed
+                }
+            } catch (e: Exception) {
+            }
+        }
+
+        return if (lastDate != null) {
+            outputFormat.format(lastDate)
+        } else {
+            "--/--/---- --:--"
+        }
+    }
 
     companion object {
         private const val PREFS_NAME = "kcat_prefs"
