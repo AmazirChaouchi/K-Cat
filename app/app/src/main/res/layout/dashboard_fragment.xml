@@ -118,7 +118,7 @@
                         android:id="@+id/tvLastPassageTitle"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="Total passages"
+                        android:text="Passages depuis changement"
                         android:textStyle="bold"
                         android:textSize="14sp"
                         app:layout_constraintStart_toStartOf="parent"

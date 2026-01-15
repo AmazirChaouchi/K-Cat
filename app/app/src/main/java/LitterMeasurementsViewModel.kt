@@ -33,6 +33,16 @@ class LitterMeasurementsViewModel : ViewModel() {
         addSource(litterCleanUp) { recompute() }
     }
 
+    val lastCleanup = MediatorLiveData<String>().apply {
+
+        fun recompute() {
+            val cleanupValue = litterCleanUp.value
+            value = getLastCleanUpFormatted(cleanupValue)
+        }
+
+        addSource(litterCleanUp) { recompute() }
+    }
+
 
     val lastPoids: LiveData<Double> = data.map { list ->
         list.lastOrNull()?.poids ?: 0.0
@@ -50,16 +60,6 @@ class LitterMeasurementsViewModel : ViewModel() {
                 Log.e("API", "Erreur API", e)
             }
         }
-    }
-
-    fun getPoids(): Double {
-        val last = _data.value?.lastOrNull()
-        var poids = 0.0
-
-        if (last != null) {
-           poids = last.poids
-        }
-        return poids
     }
 
     fun setCleanup(litiereId: String) {
@@ -112,6 +112,24 @@ class LitterMeasurementsViewModel : ViewModel() {
         }
 
         return count
+    }
+
+    fun getLastCleanUpFormatted(cleanup: LitterCleanup): String {
+        if (cleanup.lastCleanUpDate.isEmpty()) {
+            return "--/--/---- --:--"
+        }
+
+        val inputFormat = SimpleDateFormat(
+            "yyyy-MM-dd'T'HH:mm:ss",
+            Locale.US
+        )
+        val outputFormat = SimpleDateFormat(
+            "dd/MM/yyyy HH:mm",
+            Locale.FRANCE
+        )
+
+        val parse = inputFormat.parse(cleanup.lastCleanUpDate)
+        return outputFormat.format(parse)
     }
 
 }

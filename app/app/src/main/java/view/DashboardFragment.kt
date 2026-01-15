@@ -23,6 +23,7 @@ import com.github.mikephil.charting.formatter.ValueFormatter
 import kotlin.getValue
 import api.LitterMeasurement
 import api.LitterCleanup
+import org.w3c.dom.Text
 import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
@@ -48,6 +49,8 @@ class DashboardFragment : Fragment() {
         val tvSubtitle = view.findViewById<TextView>(R.id.tvSubtitle)
         val tvLastPassage = view.findViewById<TextView>(R.id.tvLastPassage)
         val tvPassagesSinceCleanup = view.findViewById<TextView>(R.id.tvNbPassages)
+        val tvDernierChangement = view.findViewById<TextView>(R.id.tvDernierChangement)
+        val tvChangementReco = view.findViewById<TextView>(R.id.tvChangementReco)
 
         val prefs = requireContext().getSharedPreferences(
             PREFS_NAME,
@@ -89,6 +92,11 @@ class DashboardFragment : Fragment() {
 
         viewModel.passagesSinceCleanup.observe(viewLifecycleOwner) { count ->
             tvPassagesSinceCleanup.text = count.toString()
+            tvChangementReco.text = if (count >= 3) "Oui" else "Non";
+        }
+
+        viewModel.lastCleanup.observe(viewLifecycleOwner) { count ->
+            tvDernierChangement.text = count.toString()
         }
 
         return view
