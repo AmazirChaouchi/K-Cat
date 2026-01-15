@@ -6,7 +6,7 @@ class WeightSensor:
         self.hx = HX711(doutPinNumber, sckPinNumber)
         self.hx.set_reading_format("MSB", "MSB")
         self.referenceUnit = 470.1586
-        self.hx.set_reference_unit(referenceUnit)
+        self.hx.set_reference_unit(self.referenceUnit)
         self.hx.reset()
         self.hx.tare()
 
