@@ -3,6 +3,7 @@
 # TEMP: LED
 from gpiozero import LED
 from time import time, localtime
+import requests
 
 from DoorSensor import DoorSensor
 from WeightSensor import WeightSensor
