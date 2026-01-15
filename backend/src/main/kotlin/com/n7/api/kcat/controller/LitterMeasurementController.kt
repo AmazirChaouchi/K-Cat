@@ -56,7 +56,7 @@ class LitterMeasurementController(private val litterMeasurementRepository: Litte
             // sinon on regarde s'il faut nettoyer
             val lastCleanUp = cleanUpData.lastCleanUpDate
             val nbPassages = litterMeasurementRepository.findByLitiereId(litterMeasurement.litiereId!!).count { mesure ->
-                mesure.timestamp!!.isAfter(lastCleanUp)
+                mesure.timestamp?.isAfter(lastCleanUp) == true
             }
 
             mustBeCleaned = nbPassages >= 3;
