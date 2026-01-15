@@ -39,16 +39,16 @@ class LitterBoxManager:
         # measuredWeight[0]: litter box is empty
         # measuredWeight[1]: there is a cat in the litter box
         # measuredWeight[1] - measuredWeight[0] = cat's weight
-        measuredWeight = [null, null]
+        measuredWeight = [None, None]
         # measureTime[0] = start time i.e. t0
         # measureTime[1] = stop time i.e. t1
-        measuredOpenTime = [null, null]
-        measuredCloseTime = [null, null]
+        measuredOpenTime = [None, None]
+        measuredCloseTime = [None, None]
 
         while(True):
             currentDoorStatus = self.doorSensor.getStatus()
             if (currentDoorStatus == "open" and previousDoorStatus == "closed"):
-                # TODO: timeCloseStart = timeCloseStop = null
+                # TODO: timeCloseStart = timeCloseStop = None
                 measuredWeight[0] = weightSensor.getWeight()
                 # TODO: Start 2" openTimer
                 measuredOpenTime[0] = timer.time()
@@ -59,7 +59,7 @@ class LitterBoxManager:
                 measuredOpenTime[1] = timer.time()
                 # If timeOpenStop - timeOpenStart < 2" then reset timers
                 if (measuredOpenTime[1] - measuredOpenTime[0] < 2.0):
-                    measuredOpenTime = [null, null]
+                    measuredOpenTime = [None, None]
                     measuredCloseTime[0] = timer.time()
                     measuredWeight[1] = weightSensor.getWeight()
             elif (currentDoorStatus == "closed" and previousDoorStatus == "closed"):
