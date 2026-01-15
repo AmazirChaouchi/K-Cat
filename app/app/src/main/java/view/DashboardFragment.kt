@@ -1,5 +1,6 @@
 package view
 
+import LitterMeasurementsViewModel
 import android.content.Context
 import android.os.Bundle
 import android.util.TypedValue
@@ -8,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import com.example.k_cat.R
 import com.github.mikephil.charting.charts.BarChart
 import com.github.mikephil.charting.charts.LineChart
@@ -19,8 +21,13 @@ import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.formatter.ValueFormatter
+import kotlin.getValue
 
 class DashboardFragment : Fragment() {
+
+    val id = "12345";
+
+    private val viewModel: LitterMeasurementsViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -51,6 +58,17 @@ class DashboardFragment : Fragment() {
         } else {
             "Voici les dernières infos sur votre chat"
         }
+
+        // Load data from API
+        viewModel.loadMeasurements(id);
+
+        // Set poids
+        val tvPoids = view.findViewById<TextView>(R.id.tvWeightValue)
+        viewModel.lastPoids.observe(viewLifecycleOwner) { poids ->
+            tvPoids.text = "$poids kg";
+        }
+
+
 
         // Graphes
         createLitterChart(view )
@@ -91,7 +109,7 @@ class DashboardFragment : Fragment() {
             position = XAxis.XAxisPosition.BOTTOM
             granularity = 3f
             setDrawGridLines(false)
-            labelCount = 8   // indicatif, MPAndroidChart ajuste
+            labelCount = 8
             valueFormatter = object : ValueFormatter() {
                 override fun getFormattedValue(value: Float): String {
                     val hour = value.toInt()
@@ -120,12 +138,11 @@ class DashboardFragment : Fragment() {
      fun createWeightChart(view : View) {
         val chart = view.findViewById<LineChart>(R.id.weightChart)
 
-        // Données fake : 12 semaines (~3 mois)
+        // Données fake
         val entries = mutableListOf<Entry>()
         var weight = 4.2f
 
         for (week in 0..11) {
-            // petite variation réaliste
             weight += listOf(-0.05f, 0f, 0.03f).random()
             entries.add(Entry(week.toFloat(), weight))
         }
@@ -137,8 +154,8 @@ class DashboardFragment : Fragment() {
              circleRadius = 4f
              setDrawCircleHole(false)
 
-             setDrawValues(false)      // pas de valeurs sur chaque point
-             mode = LineDataSet.Mode.CUBIC_BEZIER // courbe douce
+             setDrawValues(false)
+             mode = LineDataSet.Mode.CUBIC_BEZIER
          }
 
          chart.data = LineData(dataSet)

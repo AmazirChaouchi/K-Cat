@@ -360,7 +360,7 @@
 
                     <TextView
                         android:id="@+id/tvWeightValue"
-                        android:text="4.5 kg"
+                        android:text="-- kg"
                         android:textSize="20sp"
                         android:textStyle="bold"
                         android:layout_marginTop="4dp"

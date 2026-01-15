@@ -41,4 +41,26 @@
         android:hint="Ex : Moka"
         android:inputType="textPersonName"/>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="32dp" />
+
+    <Button
+        android:id="@+id/idClean"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_button"
+        android:textAllCaps="false"
+        android:text="Clean litter" />
+
+    <TextView
+        android:orientation="vertical"
+        android:id="@+id/idTextTestApi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TEST"
+        android:textSize="14sp"
+        android:layout_marginBottom="6dp"/>
+
+
 </LinearLayout>

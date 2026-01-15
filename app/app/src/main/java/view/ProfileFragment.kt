@@ -7,14 +7,21 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.EditText
 import androidx.fragment.app.Fragment
 import com.example.k_cat.R
+import LitterMeasurementsViewModel
+import android.widget.TextView
+import androidx.fragment.app.viewModels
 
 class ProfileFragment : Fragment() {
 
     private lateinit var userNameEdit: EditText
     private lateinit var catNameEdit: EditText
+    private lateinit var  idCleanBtn: Button
+
+    private val viewModel: LitterMeasurementsViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -41,6 +48,20 @@ class ProfileFragment : Fragment() {
         catNameEdit.addTextChangedListener(simpleWatcher {
             prefs.edit().putString(KEY_CAT_NAME, it).apply()
         })
+
+        idCleanBtn = view.findViewById(R.id.idClean)
+        idCleanBtn.setOnClickListener {
+            viewModel.setCleanup("12345");
+        }
+
+        val test = view.findViewById<TextView>(R.id.idTextTestApi)
+
+        // TEST API
+        viewModel.data.observe(viewLifecycleOwner) { data ->
+            test.text = data.toString()
+        }
+
+        viewModel.loadMeasurements("12345");
 
         return view
     }
