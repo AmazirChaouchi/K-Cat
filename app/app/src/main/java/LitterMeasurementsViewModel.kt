@@ -7,7 +7,6 @@ import androidx.lifecycle.viewModelScope
 import api.LitterMeasurement
 import kotlinx.coroutines.launch
 import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
 import api.LitterCleanupRequest;
 
 class LitterMeasurementsViewModel : ViewModel() {
