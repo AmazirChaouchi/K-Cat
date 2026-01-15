@@ -12,6 +12,7 @@ import api.LitterCleanup;
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
+import kotlin.collections.emptyList
 
 class LitterMeasurementsViewModel : ViewModel() {
 
@@ -46,6 +47,15 @@ class LitterMeasurementsViewModel : ViewModel() {
 
     val lastPoids: LiveData<Double> = data.map { list ->
         list.lastOrNull()?.poids ?: 0.0
+    }
+
+    val weightTrend = MediatorLiveData<String>().apply {
+        fun recompute() {
+            val measures = data.value ?: emptyList()
+            value = getWeightTrend(measures)
+        }
+
+        addSource(data) { recompute() }
     }
 
     fun load(id: String) {
@@ -130,6 +140,48 @@ class LitterMeasurementsViewModel : ViewModel() {
 
         val parse = inputFormat.parse(cleanup.lastCleanUpDate)
         return outputFormat.format(parse)
+    }
+
+    fun getWeightTrend(measures: List<LitterMeasurement>): String {
+        if (measures.isEmpty()) return "plus de données requises"
+
+        // grouper par jour
+        val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.US)
+        val measuresByDay: Map<String, List<LitterMeasurement>> = measures.groupBy {
+            val date = try { sdf.parse(it.timestamp) } catch (e: Exception) { null }
+            date?.let { sdf.format(it) } ?: ""
+        }.filterKeys { it.isNotEmpty() }
+
+        val dailyAverages = measuresByDay.map { (_, dayMeasures) ->
+            dayMeasures.map { it.poids }
+                .filter { !it.isNaN() }
+                .average()
+        }.sorted()
+
+        if (dailyAverages.size < 20) return "Plus de données requises"
+
+        // mesures sur les 40 derniers jours
+        val last40 = dailyAverages.takeLast(40)
+        if (last40.size < 20) return "Plus de données requises"
+
+        val first20 = last40.take(20)
+        val last20 = last40.takeLast(20)
+
+        // Si moins de 20 jours avec poids -> pas possible de mesurer la tendance
+        if (first20.count { !it.isNaN() } < 10 || last20.count { !it.isNaN() } < 10) {
+            return "Plus de données requises"
+        }
+
+        val avgFirst = first20.filterNot { it.isNaN() }.average()
+        val avgLast = last20.filterNot { it.isNaN() }.average()
+
+        val delta = avgLast - avgFirst
+
+        return when {
+            delta > 0.05 -> "En hausse"
+            delta < -0.05 -> "En baisse"
+            else -> "Stable"
+        }
     }
 
 }

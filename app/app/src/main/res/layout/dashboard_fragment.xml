@@ -318,7 +318,8 @@
 
                     <TextView
                         android:text="Poids"
-                        android:textSize="12sp"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
                         android:textColor="?android:textColorSecondary"
                         android:layout_height="wrap_content"
                         android:layout_width="wrap_content" />
@@ -326,8 +327,7 @@
                     <TextView
                         android:id="@+id/tvWeightValue"
                         android:text="-- kg"
-                        android:textSize="20sp"
-                        android:textStyle="bold"
+                        android:textSize="12sp"
                         android:layout_marginTop="4dp"
                         android:layout_height="wrap_content"
                         android:layout_width="wrap_content" />
@@ -348,25 +348,24 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="16dp"
-                    android:gravity="center_vertical">
+                    android:orientation="vertical"
+                    android:padding="16dp">
 
-                    <ImageView
-                        android:id="@+id/ivWeightTrend"
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:src="@drawable/ic_trending_flat"
-                        android:contentDescription="Tendance" />
+                    <TextView
+                        android:text="Tendance"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:textColor="?android:textColorSecondary"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content" />
 
                     <TextView
                         android:id="@+id/tvWeightTrend"
-                        android:text="En hausse"
-                        android:textSize="16sp"
-                        android:layout_marginStart="8dp"
-                        android:textStyle="bold"
+                        android:text="--"
+                        android:textSize="12sp"
+                        android:layout_marginTop="4dp"
                         android:layout_height="wrap_content"
-                        android:layout_width="wrap_content"/>
+                        android:layout_width="wrap_content" />
 
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>

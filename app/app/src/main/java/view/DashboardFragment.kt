@@ -52,6 +52,7 @@ class DashboardFragment : Fragment() {
         val tvPassagesSinceCleanup = view.findViewById<TextView>(R.id.tvNbPassages)
         val tvDernierChangement = view.findViewById<TextView>(R.id.tvDernierChangement)
         val tvChangementReco = view.findViewById<TextView>(R.id.tvChangementReco)
+        val tvTendancePoids = view.findViewById<TextView>(R.id.tvWeightTrend)
 
         val prefs = requireContext().getSharedPreferences(
             PREFS_NAME,
@@ -98,6 +99,10 @@ class DashboardFragment : Fragment() {
 
         viewModel.lastCleanup.observe(viewLifecycleOwner) { count ->
             tvDernierChangement.text = count.toString()
+        }
+
+        viewModel.weightTrend.observe(viewLifecycleOwner) { trend ->
+            tvTendancePoids.text = trend
         }
 
         val idCleanBtn = view.findViewById<Button>(R.id.idClean)
