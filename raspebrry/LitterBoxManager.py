@@ -39,11 +39,11 @@ class LitterBoxManager:
         # measuredWeight[0]: litter box is empty
         # measuredWeight[1]: there is a cat in the litter box
         # measuredWeight[1] - measuredWeight[0] = cat's weight
-        measuredWeight = [None, None]
+        measuredWeight = [-1.0, -1.0]
         # measureTime[0] = start time i.e. t0
         # measureTime[1] = stop time i.e. t1
-        measuredOpenTime = [None, None]
-        measuredCloseTime = [None, None]
+        measuredOpenTime = [-1.0, -1.0]
+        measuredCloseTime = [-1.0, -1.0]
 
         while(True):
             currentDoorState = self.doorSensor.getStatus()
