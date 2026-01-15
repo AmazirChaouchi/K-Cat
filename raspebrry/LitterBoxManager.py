@@ -51,19 +51,19 @@ class LitterBoxManager:
                 # TODO: timeCloseStart = timeCloseStop = None
                 measuredWeight[0] = weightSensor.getWeight()
                 # TODO: Start 2" openTimer
-                measuredOpenTime[0] = time.time()
+                measuredOpenTime[0] = time()
                 # TODO: Take care of the duration
                 previousDoorState = currentDoorState
             elif (currentDoorState == "closed" and previousDoorState == "open"):
                 # TODO: Save timeOpenStop i.e. t1
-                measuredOpenTime[1] = time.time()
+                measuredOpenTime[1] = time()
                 # If timeOpenStop - timeOpenStart < 2" then reset timers
                 if (measuredOpenTime[1] - measuredOpenTime[0] < 2.0):
                     measuredOpenTime = [None, None]
-                    measuredCloseTime[0] = time.time()
+                    measuredCloseTime[0] = time()
                     measuredWeight[1] = weightSensor.getWeight()
             elif (currentDoorState == "closed" and previousDoorState == "closed"):
-                measuredCloseTime[1] = time.time()
+                measuredCloseTime[1] = time()
                 # TODO: If measuredCloseTime < 2", do nothing
                 # TODO: Else, send information reagarding weight to the server
                 measuredWeight[1] = weightSensor.getWeight()
@@ -72,7 +72,7 @@ class LitterBoxManager:
                     payload = {
                         "litiereId": "12345",
                         "poids": measuredWeight[1] - measuredWeight[0],
-                        "timestamp": time.localtime()
+                        "timestamp": localtime()
                     }
                     response = requests.post("https://k-cat.onrender.com/api/litter-measurements", json=payload)
                     print(response.status_code) 
