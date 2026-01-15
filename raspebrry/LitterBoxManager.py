@@ -31,6 +31,16 @@ class LitterBoxManager:
         sleep(1)
         self.led.off()
 
+    def must_be_cleaned():
+        r = requests.get(API_URL, params={"litiereId": LITIERE_ID}, timeout=5)
+
+        if r.status_code != 200:
+            print("Erreur API :", r.status_code)
+            return False
+
+        data = r.json()
+        return data.get("shouldBeCleanedUp", False)
+
 
     def run(self):
         # Main activity loop
@@ -80,6 +90,14 @@ class LitterBoxManager:
                     print("Doit être nettoyée ?", must_be_cleaned)
                     # RAZ weight to not seend infinitly
                     measuredWeight[0] = measuredWeight[1] = None
+                    if(must_be_cleaned):
+                        #TODO : allumer la LED
+                        #TODO : creer un thread
+                        while True:
+                            if not must_be_cleaned():
+                                print("Eteinte de la LED")
+                                break
+                            time.sleep(10)
             else: # currentDoorState == "open" and previousDoorState = "open"
                 # print("open -> open")
                 pass
