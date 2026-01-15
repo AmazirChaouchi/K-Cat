@@ -49,7 +49,7 @@ class LitterBoxManager:
             currentDoorState = self.doorSensor.getStatus()
             if (currentDoorState == "open" and previousDoorState == "closed"):
                 # TODO: timeCloseStart = timeCloseStop = None
-                measuredWeight[0] = weightSensor.getWeight()
+                measuredWeight[0] = self.weightSensor.getWeight()
                 # TODO: Start 2" openTimer
                 measuredOpenTime[0] = time()
                 # TODO: Take care of the duration
@@ -61,12 +61,12 @@ class LitterBoxManager:
                 if (measuredOpenTime[1] - measuredOpenTime[0] < 2.0):
                     measuredOpenTime = [None, None]
                     measuredCloseTime[0] = time()
-                    measuredWeight[1] = weightSensor.getWeight()
+                    measuredWeight[1] = self.weightSensor.getWeight()
             elif (currentDoorState == "closed" and previousDoorState == "closed"):
                 measuredCloseTime[1] = time()
                 # TODO: If measuredCloseTime < 2", do nothing
                 # TODO: Else, send information reagarding weight to the server
-                measuredWeight[1] = weightSensor.getWeight()
+                measuredWeight[1] = self.weightSensor.getWeight()
                 if (measuredCloseTime[1] - measuredCloseTime[0] > 2.0):
                     # Send a weight information to the server using the API
                     payload = {
