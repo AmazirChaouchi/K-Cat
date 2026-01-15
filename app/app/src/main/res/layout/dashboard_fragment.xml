@@ -275,6 +275,15 @@
 
         </LinearLayout>
 
+        <Button
+            android:id="@+id/idClean"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_button"
+            android:textAllCaps="false"
+            android:text="Report litter box cleaning"
+            android:layout_marginTop="20dp" />
+
         <TextView
             android:id="@+id/tvWeightSectionTitle"
             android:layout_width="wrap_content"

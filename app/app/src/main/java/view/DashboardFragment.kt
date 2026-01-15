@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -97,6 +98,11 @@ class DashboardFragment : Fragment() {
 
         viewModel.lastCleanup.observe(viewLifecycleOwner) { count ->
             tvDernierChangement.text = count.toString()
+        }
+
+        val idCleanBtn = view.findViewById<Button>(R.id.idClean)
+        idCleanBtn.setOnClickListener {
+            viewModel.setCleanup("12345");
         }
 
         return view

@@ -19,9 +19,6 @@ class ProfileFragment : Fragment() {
 
     private lateinit var userNameEdit: EditText
     private lateinit var catNameEdit: EditText
-    private lateinit var  idCleanBtn: Button
-
-    private val viewModel: LitterMeasurementsViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -48,13 +45,6 @@ class ProfileFragment : Fragment() {
         catNameEdit.addTextChangedListener(simpleWatcher {
             prefs.edit().putString(KEY_CAT_NAME, it).apply()
         })
-
-        idCleanBtn = view.findViewById(R.id.idClean)
-        idCleanBtn.setOnClickListener {
-            viewModel.setCleanup("12345");
-        }
-
-        viewModel.load("12345");
 
         return view
     }

@@ -45,13 +45,5 @@
         android:layout_width="match_parent"
         android:layout_height="32dp" />
 
-    <Button
-        android:id="@+id/idClean"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/bg_button"
-        android:textAllCaps="false"
-        android:text="Clean litter" />
-
 
 </LinearLayout>
