@@ -1,5 +1,4 @@
 from hx711 import HX711
-from math import mean
 
 class WeightSensor:
 
@@ -13,5 +12,5 @@ class WeightSensor:
 
 
     def getWeight():
-        return mean(hx.get_weight(5))
+        return hx.get_weight(5)
 
