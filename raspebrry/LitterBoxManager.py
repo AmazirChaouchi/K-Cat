@@ -78,7 +78,7 @@ class LitterBoxManager:
                     print(response.status_code) 
                     must_be_cleaned = response.json()   # True ou False
                     print("Doit être nettoyée ?", must_be_cleaned)
-            else # currentDoorStatus == "open" and previousDoorStatus = "open"
+            else: # currentDoorStatus == "open" and previousDoorStatus = "open"
                 pass
 
             if (must_be_cleaned):
