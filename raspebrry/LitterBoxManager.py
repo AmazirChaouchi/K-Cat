@@ -46,15 +46,15 @@ class LitterBoxManager:
         measuredCloseTime = [None, None]
 
         while(True):
-            currentDoorStatus = self.doorSensor.getStatus()
-            if (currentDoorStatus == "open" and previousDoorStatus == "closed"):
+            currentDoorState = self.doorSensor.getStatus()
+            if (currentDoorState == "open" and previousDoorState == "closed"):
                 # TODO: timeCloseStart = timeCloseStop = None
                 measuredWeight[0] = weightSensor.getWeight()
                 # TODO: Start 2" openTimer
                 measuredOpenTime[0] = timer.time()
                 # TODO: Take care of the duration
-                previousDoorStatus = currentDoorStatus
-            elif (currentDoorStatus == "closed" and previousDoorStatus == "open"):
+                previousDoorState = currentDoorState
+            elif (currentDoorState == "closed" and previousDoorState == "open"):
                 # TODO: Save timeOpenStop i.e. t1
                 measuredOpenTime[1] = timer.time()
                 # If timeOpenStop - timeOpenStart < 2" then reset timers
@@ -62,7 +62,7 @@ class LitterBoxManager:
                     measuredOpenTime = [None, None]
                     measuredCloseTime[0] = timer.time()
                     measuredWeight[1] = weightSensor.getWeight()
-            elif (currentDoorStatus == "closed" and previousDoorStatus == "closed"):
+            elif (currentDoorState == "closed" and previousDoorState == "closed"):
                 measuredCloseTime[1] = timer.time()
                 # TODO: If measuredCloseTime < 2", do nothing
                 # TODO: Else, send information reagarding weight to the server
@@ -78,7 +78,7 @@ class LitterBoxManager:
                     print(response.status_code) 
                     must_be_cleaned = response.json()   # True ou False
                     print("Doit être nettoyée ?", must_be_cleaned)
-            else: # currentDoorStatus == "open" and previousDoorStatus = "open"
+            else: # currentDoorState == "open" and previousDoorState = "open"
                 pass
 
             if (must_be_cleaned):
