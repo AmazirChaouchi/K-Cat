@@ -4,9 +4,7 @@ import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.PUT
-import retrofit2.http.Path
 import retrofit2.http.Query
-import java.time.LocalDateTime
 
 interface ApiService {
 
@@ -17,6 +15,11 @@ interface ApiService {
 
     @PUT("litter-cleanup")
     suspend fun setLitterCleanup(
-        @Body body: LitterCleanupRequest
+        @Body body: LitterCleanup
     ): Response<Unit>
+
+    @GET("litter-cleanup")
+    suspend fun getLitterCleanup(
+        @Query("litiereId") litiereId: String
+    ): LitterCleanup
 }

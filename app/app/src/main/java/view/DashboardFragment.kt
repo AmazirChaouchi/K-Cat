@@ -22,6 +22,7 @@ import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.formatter.ValueFormatter
 import kotlin.getValue
 import api.LitterMeasurement
+import api.LitterCleanup
 import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
@@ -46,6 +47,7 @@ class DashboardFragment : Fragment() {
         val tvGreeting = view.findViewById<TextView>(R.id.tvGreeting)
         val tvSubtitle = view.findViewById<TextView>(R.id.tvSubtitle)
         val tvLastPassage = view.findViewById<TextView>(R.id.tvLastPassage)
+        val tvPassagesSinceCleanup = view.findViewById<TextView>(R.id.tvNbPassages)
 
         val prefs = requireContext().getSharedPreferences(
             PREFS_NAME,
@@ -68,7 +70,7 @@ class DashboardFragment : Fragment() {
         }
 
         // Load data from API
-        viewModel.loadMeasurements(id);
+        viewModel.load(id);
 
         // Set poids
         val tvPoids = view.findViewById<TextView>(R.id.tvWeightValue)
@@ -83,6 +85,10 @@ class DashboardFragment : Fragment() {
                 createLitterChart(view, list)
                 tvLastPassage.text = getLastPassageFormatted(list)
             }
+        }
+
+        viewModel.passagesSinceCleanup.observe(viewLifecycleOwner) { count ->
+            tvPassagesSinceCleanup.text = count.toString()
         }
 
         return view

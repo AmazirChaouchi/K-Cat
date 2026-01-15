@@ -1,8 +1,6 @@
 package api
 
-import java.time.LocalDateTime
-
-data class LitterCleanupRequest(
+data class LitterCleanup(
 
     val litiereId: String,
     val lastCleanUpDate: String,

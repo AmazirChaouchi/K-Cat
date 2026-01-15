@@ -61,7 +61,7 @@ class ProfileFragment : Fragment() {
             test.text = data.toString()
         }
 
-        viewModel.loadMeasurements("12345");
+        viewModel.load("12345");
 
         return view
     }
