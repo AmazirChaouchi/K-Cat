@@ -215,18 +215,7 @@
                         android:textStyle="bold"
                         android:textSize="14sp"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintEnd_toStartOf="@id/ivArrowLast3"
                         app:layout_constraintTop_toTopOf="parent"/>
-
-                    <!-- FLÈCHE -->
-                    <ImageView
-                        android:id="@+id/ivArrowLast3"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:src="@drawable/ic_arrow_forward"
-                        android:contentDescription="Voir détails"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"/>
 
                     <!-- VALEUR -->
                     <TextView
@@ -268,18 +257,7 @@
                         android:textStyle="bold"
                         android:textSize="14sp"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintEnd_toStartOf="@id/ivArrowLast6"
                         app:layout_constraintTop_toTopOf="parent"/>
-
-                    <!-- FLÈCHE -->
-                    <ImageView
-                        android:id="@+id/ivArrowLast6"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:src="@drawable/ic_arrow_forward"
-                        android:contentDescription="Voir détails"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"/>
 
                     <!-- VALEUR -->
                     <TextView

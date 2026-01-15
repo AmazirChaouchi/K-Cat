@@ -8,10 +8,7 @@
         android:id="@+id/dashboardFragment"
         android:name="view.DashboardFragment"
         android:label="DashboardFragment" />
-    <fragment
-        android:id="@+id/notificationsFragment"
-        android:name="view.NotificationsFragment"
-        android:label="NotificationsFragment" />
+
     <fragment
         android:id="@+id/profileFragment"
         android:name="view.ProfileFragment"

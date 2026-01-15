@@ -53,14 +53,5 @@
         android:textAllCaps="false"
         android:text="Clean litter" />
 
-    <TextView
-        android:orientation="vertical"
-        android:id="@+id/idTextTestApi"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TEST"
-        android:textSize="14sp"
-        android:layout_marginBottom="6dp"/>
-
 
 </LinearLayout>

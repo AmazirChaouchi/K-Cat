@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="Theme.KCat" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="Theme.KCat" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="android:forceDarkAllowed">false</item>
+
         <item name="colorPrimary">@color/purple_500</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
         <item name="colorSecondary">@color/teal_200</item>
+        <item name="android:windowBackground">@color/background_off_white</item>
     </style>
 </resources>

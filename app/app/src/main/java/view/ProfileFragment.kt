@@ -54,13 +54,6 @@ class ProfileFragment : Fragment() {
             viewModel.setCleanup("12345");
         }
 
-        val test = view.findViewById<TextView>(R.id.idTextTestApi)
-
-        // TEST API
-        viewModel.data.observe(viewLifecycleOwner) { data ->
-            test.text = data.toString()
-        }
-
         viewModel.load("12345");
 
         return view
