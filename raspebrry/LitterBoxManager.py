@@ -4,6 +4,7 @@
 from gpiozero import LED
 from time import time, localtime, sleep, strftime
 import requests
+import threading
 
 from DoorSensor import DoorSensor
 from WeightSensor import WeightSensor
@@ -20,7 +21,10 @@ class LitterBoxManager:
         # TODO: Initialize Pin Layout from file
         self.doorSensor = DoorSensor(DOOR_SENSOR_PIN)
         self.weightSensor = WeightSensor(WEIGHT_DOUT_PIN, WEIGHT_SCK_PIN)
-        self.led = LED(LED_PIN)        
+        self.led = LED(LED_PIN)
+        self.led_thread = None
+        self.led_stop_event = threading.Event()
+     
 
 
     def setup(self):
@@ -31,7 +35,8 @@ class LitterBoxManager:
         sleep(1)
         self.led.off()
 
-    def must_be_cleaned():
+    # Requete faisant un get a l'api pour verifier si la litiere doit etre nettoyee
+    def must_be_cleaned(self):
         r = requests.get(API_URL, params={"litiereId": LITIERE_ID}, timeout=5)
 
         if r.status_code != 200:
@@ -40,6 +45,22 @@ class LitterBoxManager:
 
         data = r.json()
         return data.get("shouldBeCleanedUp", False)
+
+
+    # Gestion de la LED : une fois allumée, on fait une requête vers l'API toutes les 
+    # dix secondes pour savoir quand l'éteindre (methode lancée dans un thread)
+    def led_monitor(self, stop_event):
+        self.led.on()
+        print("LED allumée")
+
+        # boucle qui check toutes les 10 secondes si il faut eteindre la LED
+        while not stop_event.is_set():
+            if not self.must_be_cleaned():
+                break
+            sleep(10)
+
+        self.led.off()
+        print("LED éteinte")
 
 
     def run(self):
@@ -88,22 +109,27 @@ class LitterBoxManager:
                     print(response.json())
                     must_be_cleaned = response.json()   # True ou False
                     print("Doit être nettoyée ?", must_be_cleaned)
+                    if must_be_cleaned:
+                        if self.led_thread is None or not self.led_thread.is_alive():
+                            self.led_stop_event.clear()
+                            self.led_thread = threading.Thread(
+                                target=self.led_monitor,
+                                args=(self.led_stop_event,),
+                                daemon=True
+                            )
+                            self.led_thread.start()
+
+                    if not must_be_cleaned and self.led_thread and self.led_thread.is_alive():
+                        self.led_stop_event.set()
+
+                    
                     # RAZ weight to not seend infinitly
                     measuredWeight[0] = measuredWeight[1] = None
-                    if(must_be_cleaned):
-                        #TODO : allumer la LED
-                        #TODO : creer un thread
-                        while True:
-                            if not must_be_cleaned():
-                                print("Eteinte de la LED")
-                                break
-                            time.sleep(10)
+
             else: # currentDoorState == "open" and previousDoorState = "open"
                 # print("open -> open")
                 pass
 
-            if (must_be_cleaned):
-                self.led.on()
 
             previousDoorState = currentDoorState
             if (measuredWeight[0] != None and measuredWeight[1] != None):
