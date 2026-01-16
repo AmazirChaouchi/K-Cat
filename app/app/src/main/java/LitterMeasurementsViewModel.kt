@@ -83,6 +83,8 @@ class LitterMeasurementsViewModel : ViewModel() {
 
                 RetrofitInstance.api.setLitterCleanup(body)
 
+                load(litiereId)
+
             } catch (e: Exception) {
                 Log.e("API", "Erreur cleanup", e)
             }
