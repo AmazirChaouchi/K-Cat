@@ -101,7 +101,7 @@ class LitterBoxManager:
                 # if (measuredCloseTime[1] - measuredCloseTime[0] > 2.0):
                     # Send a weight information to the server using the API
                     payload = {
-                        "litiereId": "1318",
+                        "litiereId": "12345",
                         "poids": measuredWeight[1] - measuredWeight[0],
                         "timestamp": strftime("%Y-%m-%dT%H:%M:%S", localtime())
                     }
