@@ -281,7 +281,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/bg_button"
             android:textAllCaps="false"
-            android:text="Report litter box cleaning"
+            android:text="Déclarer un nettoyage de litière"
             android:layout_marginTop="20dp" />
 
         <TextView

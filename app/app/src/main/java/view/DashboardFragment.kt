@@ -1,6 +1,7 @@
 package view
 
 import LitterMeasurementsViewModel
+import android.app.AlertDialog
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -106,8 +107,16 @@ class DashboardFragment : Fragment() {
         }
 
         val idCleanBtn = view.findViewById<Button>(R.id.idClean)
+
         idCleanBtn.setOnClickListener {
-            viewModel.setCleanup("12345");
+            AlertDialog.Builder(requireContext())
+                .setTitle("Confirmation de nettoyage")
+                .setMessage("Confirmer le nettoyage de litière ?")
+                .setPositiveButton("Oui") { _, _ ->
+                    viewModel.setCleanup("12345")
+                }
+                .setNegativeButton("Non", null)
+                .show()
         }
 
         return view
