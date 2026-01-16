@@ -118,7 +118,7 @@
                         android:id="@+id/tvLastPassageTitle"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="Passages depuis changement"
+                        android:text="Passages depuis le dernier nettoyage"
                         android:textStyle="bold"
                         android:textSize="14sp"
                         app:layout_constraintStart_toStartOf="parent"
@@ -190,7 +190,7 @@
 
             <!-- DERNIER PASSAGE -->
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/cardDernierChangement"
+                android:id="@+id/cardDernierNettoyage"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -208,10 +208,10 @@
 
                     <!-- TITRE -->
                     <TextView
-                        android:id="@+id/tvDernierChangementTitle"
+                        android:id="@+id/tvDernierNettoyageTitle"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="Dernier changement"
+                        android:text="Dernier nettoyage"
                         android:textStyle="bold"
                         android:textSize="14sp"
                         app:layout_constraintStart_toStartOf="parent"
@@ -219,21 +219,21 @@
 
                     <!-- VALEUR -->
                     <TextView
-                        android:id="@+id/tvDernierChangement"
+                        android:id="@+id/tvDernierNettoyage"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="--/--/---- --:--"
                         android:textSize="16sp"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/tvDernierChangementTitle"
+                        app:layout_constraintTop_toBottomOf="@id/tvDernierNettoyageTitle"
                         android:layout_marginTop="8dp"/>
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </com.google.android.material.card.MaterialCardView>
 
-            <!-- CARTE CHANGEMENT RECOMMANDE -->
+            <!-- CARTE NETTOYAGE RECOMMANDE -->
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/cardChangementReco"
+                android:id="@+id/cardNettoyageReco"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -250,10 +250,10 @@
 
                     <!-- TITRE -->
                     <TextView
-                        android:id="@+id/tvChangementRecoTitle"
+                        android:id="@+id/tvNettoyageRecoTitle"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="Changement recommandé"
+                        android:text="Nettoyage recommandé"
                         android:textStyle="bold"
                         android:textSize="14sp"
                         app:layout_constraintStart_toStartOf="parent"
@@ -261,13 +261,13 @@
 
                     <!-- VALEUR -->
                     <TextView
-                        android:id="@+id/tvChangementReco"
+                        android:id="@+id/tvNettoyageReco"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="20%"
                         android:textSize="16sp"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/tvChangementRecoTitle"
+                        app:layout_constraintTop_toBottomOf="@id/tvNettoyageRecoTitle"
                         android:layout_marginTop="8dp"/>
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -399,7 +399,7 @@
                     android:id="@+id/tvWeightHistoryTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Évolution du poids (3 derniers mois)"
+                    android:text="Évolution du poids (3 semaines)"
                     android:textStyle="bold"
                     android:textSize="16sp"
                     android:layout_marginBottom="8dp" />

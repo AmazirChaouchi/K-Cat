@@ -24,8 +24,6 @@ import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.formatter.ValueFormatter
 import kotlin.getValue
 import api.LitterMeasurement
-import api.LitterCleanup
-import org.w3c.dom.Text
 import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
@@ -51,8 +49,8 @@ class DashboardFragment : Fragment() {
         val tvSubtitle = view.findViewById<TextView>(R.id.tvSubtitle)
         val tvLastPassage = view.findViewById<TextView>(R.id.tvLastPassage)
         val tvPassagesSinceCleanup = view.findViewById<TextView>(R.id.tvNbPassages)
-        val tvDernierChangement = view.findViewById<TextView>(R.id.tvDernierChangement)
-        val tvChangementReco = view.findViewById<TextView>(R.id.tvChangementReco)
+        val tvDernierChangement = view.findViewById<TextView>(R.id.tvDernierNettoyage)
+        val tvChangementReco = view.findViewById<TextView>(R.id.tvNettoyageReco)
         val tvTendancePoids = view.findViewById<TextView>(R.id.tvWeightTrend)
 
         val prefs = requireContext().getSharedPreferences(
