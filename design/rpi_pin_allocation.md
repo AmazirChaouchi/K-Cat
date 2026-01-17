@@ -52,7 +52,7 @@ GPIO26 (37) (38) GPIO20
 | 31 | GPIO6 | `WeightSensor::sck` | 32 | GPIO12 | - |
 | 33 | GPIO19 | - | 34 | GND | - |
 | 35 | GPIO19 | - | 36 | GPIO16 | - |
-| 37 | GPIO26 | - | 38 | GPIO20 | - |
-| 39 | GND | - | 40 | GPIO21 | - |
+| 37 | GPIO26 | `Ledsensor::GPIO` | 38 | GPIO20 | - |
+| 39 | GND | `LEDsensor::GND` | 40 | GPIO21 | - |
 
 Special thanks to `fxadecimal` for making [this template](https://gist.github.com/fxadecimal/7bf8d228e8b229d78fa9e63a146b9d3e) available.
