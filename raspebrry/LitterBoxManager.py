@@ -9,29 +9,30 @@ import threading
 from DoorSensor import DoorSensor
 from WeightSensor import WeightSensor
 
-# Make these vars const
+# PIN define for the communication with the raspberry
 DOOR_SENSOR_PIN = 14
 WEIGHT_DOUT_PIN = 5
 WEIGHT_SCK_PIN = 6
 LED_PIN = 26
+# identity of the litter for the API
 LITTER_ID = 12345
+# noise value to ignore false positif for the weight
+NOISE = 20
 
 class LitterBoxManager:
 
     def __init__(self):
-        # TODO: Initialize Pin Layout from file
+        # Initialize Pin Layout and led thread
         self.doorSensor = DoorSensor(DOOR_SENSOR_PIN)
         self.weightSensor = WeightSensor(WEIGHT_DOUT_PIN, WEIGHT_SCK_PIN)
         self.led = LED(LED_PIN)
         self.led_thread = None
         self.led_stop_event = threading.Event()
-     
 
 
     def setup(self):
         print("setup")
-        self.led.on()
-        # TODO: Pairing
+        self.led.on() # we can check the led work thanks to that and that the program is / isn't ready
         self.weightSensor.setScale()
         sleep(1)
         self.led.off()
@@ -83,27 +84,28 @@ class LitterBoxManager:
             currentDoorState = self.doorSensor.getStatus()
             if (currentDoorState == "open" and previousDoorState == "closed"):
                 # print("closed -> open")
+                # we get the weight before the cat come's in and we put the weight of the cat to None
                 measuredWeight[0] = self.weightSensor.getWeight()
                 measuredWeight[1] = None
+                # beginning of the time with the door open
                 measuredOpenTime[0] = time()
             elif (currentDoorState == "closed" and previousDoorState == "open"):
                 # print("open -> closed")
+                # end the time with the door open and beginning of the time with the door closed
                 measuredOpenTime[1] = time()
                 measuredCloseTime[0] = time()
-                measuredWeight[1] = self.weightSensor.getWeight()
-                # if the door bagotte donc change the weight, we keep the first one
+                # to prevent false weight measure when the door bagotte. We keep the first one who is the good one
                 if measuredWeight[1] == None:
                     measuredWeight[1] = self.weightSensor.getWeight()
-                # If timeOpenStop - timeOpenStart < 2" then reset timers
+                # If the door is open for less than 2s then reset timers
                 if (measuredOpenTime[1] - measuredOpenTime[0] < 2.0):
                     measuredOpenTime = [None, None]
             elif (currentDoorState == "closed" and previousDoorState == "closed"):
                 # print("closed -> closed")
                 measuredCloseTime[1] = time()
-                # If measuredCloseTime < 2", do nothing
+                # If the door is close for less than 2s or the cat went out of the litter we do nothing
                 # Else, send information reagarding weight to the server
-                if (measuredWeight[0] != None and measuredWeight[1] != None and (measuredWeight[1] > measuredWeight[0] + 20) and measuredCloseTime[1] - measuredCloseTime[0] > 2.0):
-                # if (measuredCloseTime[1] - measuredCloseTime[0] > 2.0):
+                if (measuredWeight[0] != None and measuredWeight[1] != None and (measuredWeight[1] > measuredWeight[0] + NOISE) and measuredCloseTime[1] - measuredCloseTime[0] > 2.0):
                     # Send a weight information to the server using the API
                     payload = {
                         "litiereId": LITTER_ID,
@@ -114,7 +116,7 @@ class LitterBoxManager:
                     print(response.json())
                     must_be_cleaned = response.json()   # True ou False
                     print("Doit être nettoyée ?", must_be_cleaned)
-                    if must_be_cleaned:
+                    if must_be_cleaned: # the litter must be clean, it's visible with the led on thanks to the thread who asked for it status
                         if self.led_thread is None or not self.led_thread.is_alive():
                             self.led_stop_event.clear()
                             self.led_thread = threading.Thread(
@@ -123,12 +125,11 @@ class LitterBoxManager:
                                 daemon=True
                             )
                             self.led_thread.start()
-
+                    # the litter was cleaned we can stopped the LED
                     if not must_be_cleaned and self.led_thread and self.led_thread.is_alive():
                         self.led_stop_event.set()
 
-                    
-                    # RAZ weight to not seend infinitly
+                    # RAZ weight to not send infinit request to the API
                     measuredWeight[0] = measuredWeight[1] = None
 
             else: # currentDoorState == "open" and previousDoorState = "open"
