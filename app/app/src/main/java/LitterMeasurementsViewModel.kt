@@ -145,7 +145,7 @@ class LitterMeasurementsViewModel : ViewModel() {
     }
 
     fun getWeightTrend(measures: List<LitterMeasurement>): String {
-        if (measures.isEmpty()) return "plus de données requises"
+        if (measures.isEmpty()) return "Plus de données requises"
 
         // grouper par jour
         val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.US)
@@ -154,36 +154,41 @@ class LitterMeasurementsViewModel : ViewModel() {
             date?.let { sdf.format(it) } ?: ""
         }.filterKeys { it.isNotEmpty() }
 
-        val dailyAverages = measuresByDay.map { (_, dayMeasures) ->
-            dayMeasures.map { it.poids }
-                .filter { !it.isNaN() }
-                .average()
-        }.sorted()
+        // 2️calcul moyenne par jour + tri chronologique
+        val dailyAverages = measuresByDay
+            .map { (date, dayMeasures) ->
+                val avg = dayMeasures.map { it.poids }
+                    .filter { !it.isNaN() }
+                    .average()
+                date!! to avg
+            }
+            .sortedBy { it.first }  //date 
+            .map { it.second }      //moyenne
 
-        if (dailyAverages.size < 20) return "Plus de données requises"
+        if (dailyAverages.size < 30) return "Plus de données requises"
 
-        // mesures sur les 40 derniers jours
-        val last40 = dailyAverages.takeLast(40)
-        if (last40.size < 20) return "Plus de données requises"
+        // 3️Derniers 30 jours
+        val last30 = dailyAverages.takeLast(30)
 
-        val first20 = last40.take(20)
-        val last20 = last40.takeLast(20)
+        val first15 = last30.take(15)
+        val last15 = last30.takeLast(15)
 
-        // Si moins de 20 jours avec poids -> pas possible de mesurer la tendance
-        if (first20.count { !it.isNaN() } < 10 || last20.count { !it.isNaN() } < 10) {
+        if (first15.count { !it.isNaN() } < 7 || last15.count { !it.isNaN() } < 7) {
             return "Plus de données requises"
         }
 
-        val avgFirst = first20.filterNot { it.isNaN() }.average()
-        val avgLast = last20.filterNot { it.isNaN() }.average()
+        val avgFirst = first15.filterNot { it.isNaN() }.average()
+        val avgLast = last15.filterNot { it.isNaN() }.average()
 
         val delta = avgLast - avgFirst
 
+        Log.d("Weight", "avgFirst = $avgFirst, avgLast = $avgLast, delta = $delta")
+
+        // Résultat
         return when {
             delta > 0.05 -> "En hausse"
             delta < -0.05 -> "En baisse"
             else -> "Stable"
         }
     }
-
 }

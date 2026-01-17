@@ -399,7 +399,7 @@
                     android:id="@+id/tvWeightHistoryTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Évolution du poids (3 semaines)"
+                    android:text="Évolution du poids (1 mois)"
                     android:textStyle="bold"
                     android:textSize="16sp"
                     android:layout_marginBottom="8dp" />

@@ -193,7 +193,7 @@ class DashboardFragment : Fragment() {
 
     fun createWeightChart(view: View, measures: List<LitterMeasurement>) {
         val chart = view.findViewById<LineChart>(R.id.weightChart)
-        val totalDays = 21
+        val totalDays = 30
         val entries = mutableListOf<Entry>()
 
         // parse timestamps p
