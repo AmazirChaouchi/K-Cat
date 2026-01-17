@@ -14,6 +14,7 @@ DOOR_SENSOR_PIN = 14
 WEIGHT_DOUT_PIN = 5
 WEIGHT_SCK_PIN = 6
 LED_PIN = 26
+LITTER_ID = 12345
 
 class LitterBoxManager:
 
@@ -37,7 +38,7 @@ class LitterBoxManager:
 
     # Requete faisant un get a l'api pour verifier si la litiere doit etre nettoyee
     def must_be_cleaned(self):
-        r = requests.get(API_URL, params={"litiereId": LITIERE_ID}, timeout=5)
+        r = requests.get("https://k-cat.onrender.com/api/litter-cleanup", params={"litiereId": LITTER_ID}, timeout=5)
 
         if r.status_code != 200:
             print("Erreur API :", r.status_code)
@@ -105,7 +106,7 @@ class LitterBoxManager:
                 # if (measuredCloseTime[1] - measuredCloseTime[0] > 2.0):
                     # Send a weight information to the server using the API
                     payload = {
-                        "litiereId": "12345",
+                        "litiereId": LITTER_ID,
                         "poids": measuredWeight[1] - measuredWeight[0],
                         "timestamp": strftime("%Y-%m-%dT%H:%M:%S", localtime())
                     }
