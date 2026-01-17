@@ -80,7 +80,7 @@ class DashboardFragment : Fragment() {
         // Set poids
         val tvPoids = view.findViewById<TextView>(R.id.tvWeightValue)
         viewModel.lastPoids.observe(viewLifecycleOwner) { poids ->
-            tvPoids.text = "$poids kg";
+            tvPoids.text = String.format("%.2f kg", poids)
         }
 
         // Stats
