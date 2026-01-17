@@ -116,7 +116,7 @@ class LitterBoxManager:
                     print(response.json())
                     must_be_cleaned = response.json()   # True ou False
                     print("Doit être nettoyée ?", must_be_cleaned)
-                    if must_be_cleaned: # the litter must be clean, it's visible with the led on thanks to the thread who asked for it status
+                    if must_be_cleaned: # launch of the thread
                         if self.led_thread is None or not self.led_thread.is_alive():
                             self.led_stop_event.clear()
                             self.led_thread = threading.Thread(
