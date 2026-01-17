@@ -107,7 +107,7 @@ class LitterBoxManager:
                     # Send a weight information to the server using the API
                     payload = {
                         "litiereId": LITTER_ID,
-                        "poids": measuredWeight[1] - measuredWeight[0],
+                        "poids": (measuredWeight[1] - measuredWeight[0])/1000,
                         "timestamp": strftime("%Y-%m-%dT%H:%M:%S", localtime())
                     }
                     response = requests.post("https://k-cat.onrender.com/api/litter-measurements", json=payload)
