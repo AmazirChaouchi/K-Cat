@@ -17,5 +17,6 @@ class WeightSensor:
 
 
     def getWeight(self):
-        return self.hx.get_weight(5)
+        # division because we want it in kg
+        return self.hx.get_weight(5)/1000
 
