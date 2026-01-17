@@ -191,4 +191,9 @@ class LitterMeasurementsViewModel : ViewModel() {
             else -> "Stable"
         }
     }
+
+    fun refresh(litiereId: String) {
+        load(litiereId)
+    }
+
 }
