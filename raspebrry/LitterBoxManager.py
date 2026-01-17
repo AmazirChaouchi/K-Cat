@@ -83,12 +83,16 @@ class LitterBoxManager:
             if (currentDoorState == "open" and previousDoorState == "closed"):
                 # print("closed -> open")
                 measuredWeight[0] = self.weightSensor.getWeight()
+                measuredWeight[1] = None
                 measuredOpenTime[0] = time()
             elif (currentDoorState == "closed" and previousDoorState == "open"):
                 # print("open -> closed")
                 measuredOpenTime[1] = time()
                 measuredCloseTime[0] = time()
                 measuredWeight[1] = self.weightSensor.getWeight()
+                # if the door bagotte donc change the weight, we keep the first one
+                if measuredWeight[1] == None:
+                    measuredWeight[1] = self.weightSensor.getWeight()
                 # If timeOpenStop - timeOpenStart < 2" then reset timers
                 if (measuredOpenTime[1] - measuredOpenTime[0] < 2.0):
                     measuredOpenTime = [None, None]
